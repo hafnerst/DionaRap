@@ -14,17 +14,18 @@ public class Tastatur extends JPanel
 	
 	public Tastatur()
 	{
+		String pfad = System.getProperty("user.dir")+"/images/navigator/";
+		
 		//3 Zeilen, 3 Spalten und 0 Abstand zwischen Elementen
 		setLayout(new GridLayout(3,3,0,0));
 		setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		
-		//Setzen des roten Rahmens
-		setBorder(BorderFactory.createLineBorder(Color.red));
-		
 		for(int i=9; i>0;i--)
 		{
-			tasten[i-1] = new JButton(Integer.toString(i));
-			tasten[i-1].setPreferredSize(new Dimension(50,50));
+			tasten[i-1] = new JButton();
+			tasten[i-1].setActionCommand(Integer.toString(i));
+			tasten[i-1].setIcon(new ImageIcon(pfad+"taste"+i+".gif"));
+			tasten[i-1].setPreferredSize(new Dimension(75,75));
 			add(tasten[i-1]);
 			
 			if(i!=5)

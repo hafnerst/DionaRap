@@ -8,7 +8,7 @@ public class ListenerBewegung implements ActionListener
 	public void actionPerformed(ActionEvent event) 
 	{
 		JButton tmp_taste = (JButton) event.getSource();
-		String beschriftung = tmp_taste.getText();
+		String beschriftung = tmp_taste.getActionCommand();
 		
 		Navigator nav = (Navigator)tmp_taste.getTopLevelAncestor();
 		Hauptfenster hf = (Hauptfenster)nav.getParent();

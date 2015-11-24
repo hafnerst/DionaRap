@@ -1,14 +1,18 @@
+import java.awt.Polygon;
+
 import javax.swing.*; 
 
 /**
  * Die Klasse Navigator erstellt ein Kindfenster vom Hauptfenster und setzt deren Eigenschaften
- * @author Daniel Landler-Gärtner und Steffen Hafner
+ * @author Daniel Landler-Gï¿½rtner und Steffen Hafner
  *
  */
 public class Navigator extends JWindow
 {
-	// Diese Variable wird benötigt, da JWindow das Interface Serializable implementiert
+	// Diese Variable wird benï¿½tigt, da JWindow das Interface Serializable implementiert
 	private static final long serialVersionUID = 1L;
+	Polygon polygon = new Polygon();
+	int b_size = 75;
 	
 	public Navigator(JFrame hauptfenster)
 	{
@@ -16,11 +20,26 @@ public class Navigator extends JWindow
 		super(hauptfenster);
 		setVisible(true);
 				
-		//Hinzufügen einer Tastatur und übergeben des aktuell verwendeten Objekts
+		//Hinzufï¿½gen einer Tastatur und ï¿½bergeben des aktuell verwendeten Objekts
 		add(new Tastatur());
-
+		
 		//Kindfenster relativ zum Hauptfenster positionieren
 		setLocation(hauptfenster.getX()+hauptfenster.getWidth()+20, hauptfenster.getY());
+		
 		pack();
+		
+		createPolygon(b_size);
+		setShape(polygon);
+	}
+	private void createPolygon(int b_size)
+	{
+		polygon.addPoint(0,b_size);
+		polygon.addPoint(0,(b_size)*2);
+		polygon.addPoint(b_size,(b_size)*3);
+		polygon.addPoint((b_size)*2,(b_size)*3);
+		polygon.addPoint((b_size)*3,(b_size)*2);
+		polygon.addPoint((b_size)*3,b_size);
+		polygon.addPoint((b_size)*2,0);
+		polygon.addPoint(b_size,0);
 	}
 }

@@ -86,7 +86,7 @@ public class Spielfeld extends JPanel
 			}
 			else if(figuren[i] instanceof Destruction)
 			{
-				felder[figuren[i].getX()][figuren[i].getY()].setIcon(new ImageIcon(pfad+"\\destruction.gif"));
+				felder[figuren[i].getX()][figuren[i].getY()].setIcon(new ImageIcon(pfad+"/destruction.gif"));
 			}
 		}
 	}

@@ -16,9 +16,12 @@ public class Hauptfenster extends JFrame
 {
 	// Diese Variable wird ben�tigt, da JFrame das Interface Serializable implementiert
 	private static final long serialVersionUID = 1L;
+	JPanel flaeche = new JPanel();
 	DionaRapModel spiel = new DionaRapModel();
 	DionaRapController steuerung = new DionaRapController(spiel);
 	Spielfeld feld = new Spielfeld(spiel);
+	int anz_gegner = spiel.getOpponentCount();
+	Toolbar toolbar;
 	Navigator nav;
 	
 	public Hauptfenster()
@@ -28,20 +31,28 @@ public class Hauptfenster extends JFrame
 		
 		//Fenstereigenschaften setzen
 		setTitle("DionaRap");
-		setVisible(true);
 		
 		//Spielfeld im Zentrum des Hauptfensters anlegen
-		add(feld, BorderLayout.CENTER);
+		flaeche.add(feld);
+		add(flaeche, BorderLayout.CENTER);
+		
+		toolbar = new Toolbar();
+		add(toolbar, BorderLayout.NORTH);
+				
 		//Objekte automatisch anordnen
 		pack();
 		setResizable(false);
-		//Erst packen und dann in die Mitte setzen, davor falsche Gr��e 
+		
+		//Erst packen und dann in die Mitte setzen, davor falsche Groesse 
 		setLocationRelativeTo(null);
+		setVisible(true);
+		
 		nav = new Navigator(this);
 		
 		addComponentListener(new ListenerFenster());
 		spiel.addModelChangedEventListener(new ListenerModel(feld));
 		addKeyListener(new ListenerTasten());
+		requestFocus();
 	}
 	
 	public DionaRapController getSteuerung()
@@ -54,6 +65,11 @@ public class Hauptfenster extends JFrame
 		return nav;
 	}
 	
+	public Toolbar getToolbar()
+	{
+		return toolbar;
+	}
+		
 	public static void main(String[] args) 
 	{
 		new Hauptfenster();
