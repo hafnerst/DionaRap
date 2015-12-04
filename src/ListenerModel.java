@@ -9,7 +9,6 @@ import de.fhwgt.dionarap.model.listener.*;
 public class ListenerModel implements DionaRapListener
 {
 	Spielfeld sfeld;
-	JOptionPane dialogfenster = new JOptionPane();
 	String pfad = System.getProperty("user.dir")+"/images/";
 	int eingabe;
 	Hauptfenster hf;
@@ -28,13 +27,15 @@ public class ListenerModel implements DionaRapListener
 		DionaRapModel model = (DionaRapModel)event.getSource();
 		Toolbar toolbar = hf.getToolbar();
 		
+		//Anpassung des Punktestands
 		int stand = model.getScore();		
-		toolbar.punktestand.setText(Integer.toString(stand));
+		toolbar.punktestandT.setText(Integer.toString(stand));
 		
+		//Anpassung des Fortschittsbalken
 		int anz_gegner = hf.anz_gegner;
 		int akt_gegner = anz_gegner-model.getOpponentCount();
 		int fortschritt = (int)(((double)akt_gegner/(double)anz_gegner)*100);
-		toolbar.balken.setValue(fortschritt);
+		toolbar.fortschrittPB.setValue(fortschritt);
 	}
 
 	public void statusChanged(GameStatusEvent event) 
@@ -43,17 +44,17 @@ public class ListenerModel implements DionaRapListener
 		
 		
 		Toolbar toolbar = hf.getToolbar();
-		toolbar.neu_spiel.setEnabled(true);
+		toolbar.spiel_neuB.setEnabled(true);
 		
 		Object[] optionen = {"Abbrechen", "Neues Spiel"};
 		
 		if(model.isGameOver())
 		{
-			eingabe = JOptionPane.showOptionDialog(dialogfenster,"Game over!","Spielende",JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon(pfad+"gameover.gif"), optionen, optionen[1]);
+			eingabe = JOptionPane.showOptionDialog(hf,"Game over!","Spielende",JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon(pfad+"gameover.gif"), optionen, optionen[1]);
 		}
 		if(model.isGameWon())
 		{
-			eingabe = JOptionPane.showOptionDialog(dialogfenster,"Gewonnen!","Spielende",JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon(pfad+"gewonnen.gif"), optionen, optionen[1]);
+			eingabe = JOptionPane.showOptionDialog(hf,"Gewonnen!","Spielende",JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon(pfad+"gewonnen.gif"), optionen, optionen[1]);
 		}
 		
 		if (eingabe == 1)

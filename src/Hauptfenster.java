@@ -23,6 +23,7 @@ public class Hauptfenster extends JFrame
 	int anz_gegner = spiel.getOpponentCount();
 	Toolbar toolbar;
 	Navigator nav;
+	JMenuBar menue;
 	
 	public Hauptfenster()
 	{
@@ -33,14 +34,18 @@ public class Hauptfenster extends JFrame
 		setTitle("DionaRap");
 		
 		//Spielfeld im Zentrum des Hauptfensters anlegen
-		flaeche.add(feld);
-		add(flaeche, BorderLayout.CENTER);
+		flaeche.add(feld, BorderLayout.CENTER);	
+		add(flaeche);
 		
 		toolbar = new Toolbar();
 		add(toolbar, BorderLayout.NORTH);
-				
+		
+		menue = new MenuBar(this);
+		setJMenuBar(menue);
+		
 		//Objekte automatisch anordnen
 		pack();
+
 		setResizable(false);
 		
 		//Erst packen und dann in die Mitte setzen, davor falsche Groesse 
@@ -68,6 +73,25 @@ public class Hauptfenster extends JFrame
 	public Toolbar getToolbar()
 	{
 		return toolbar;
+	}
+	
+	public void anzToolbar(boolean sichtbar)
+	{
+		toolbar.setVisible(sichtbar);
+		pack();
+	}
+	
+	public void posToolbar(boolean richtung)
+	{
+		if(richtung == true)
+		{
+			add(toolbar, BorderLayout.NORTH);
+		}
+		else
+		{
+			add(toolbar, BorderLayout.SOUTH);
+		}
+		pack();
 	}
 		
 	public static void main(String[] args) 

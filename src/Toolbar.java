@@ -22,28 +22,27 @@ public class Toolbar extends JToolBar
 {
 	private static final long serialVersionUID = 1L;
 	String pfad = System.getProperty("user.dir")+"/images/squarehead/ammo.png";
-	JPanel gesamt = new JPanel();
-	JButton neu_spiel;
-	JTextField punktestand;
-	JProgressBar balken;
+	JPanel gesamtP = new JPanel();
+	JButton spiel_neuB;
+	JTextField punktestandT;
+	JProgressBar fortschrittPB;
 
 	public Toolbar()
 	{	
-		gesamt.setLayout(new GridLayout(1,5,0,0));
-		gesamt.setPreferredSize(new Dimension(500,60));
+		gesamtP.setLayout(new GridLayout(1,5,0,0));
+		gesamtP.setPreferredSize(new Dimension(500,60));
 		
-		//Panel für Button "Neues Spiel" und Button "Neues Spiel" anlegen
-		JPanel button_spiel = new JPanel();
-		button_spiel.setPreferredSize(new Dimension(100,60));
-		button_spiel.setLayout(new GridBagLayout());
+		JPanel spiel_neuP = new JPanel();
+		spiel_neuP.setPreferredSize(new Dimension(100,60));
+		spiel_neuP.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		gesamt.add(button_spiel);
+		gesamtP.add(spiel_neuP);
 		
-		neu_spiel = new JButton("Neues Spiel");
-		neu_spiel.setEnabled(false);
-		neu_spiel.setFont(new Font(null, Font.PLAIN, 11));
-		neu_spiel.setPreferredSize(new Dimension(90,25));
-		neu_spiel.addActionListener(new ActionListener()
+		spiel_neuB = new JButton("Neues Spiel");
+		spiel_neuB.setEnabled(false);
+		spiel_neuB.setFont(new Font(null, Font.PLAIN, 11));
+		//spiel_neuB.setPreferredSize(new Dimension(90,25));
+		spiel_neuB.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent event)
 			{
@@ -55,68 +54,68 @@ public class Toolbar extends JToolBar
 				new Hauptfenster();
 			}
 		});
-		button_spiel.add(neu_spiel, gbc);
+		spiel_neuP.add(spiel_neuB, gbc);
 		
 		//Panel für "Punktestand" und Textfeld "Punktestand" anlegen
-		JPanel punkte = new JPanel();
-		punkte.setBorder(BorderFactory.createTitledBorder("Punktestand"));
-		TitledBorder pkt = (TitledBorder) punkte.getBorder();
-		pkt.setTitleFont(new Font(null, Font.PLAIN, 11));
-		punkte.setToolTipText("Punktestand");
+		JPanel punkteP = new JPanel();
+		punkteP.setBorder(BorderFactory.createTitledBorder("Punktestand"));
+		TitledBorder punkteTB = (TitledBorder) punkteP.getBorder();
+		punkteTB.setTitleFont(new Font(null, Font.PLAIN, 11));
+		punkteP.setToolTipText("Punktestand");
 	
-		punktestand = new JTextField("0");
-		punktestand.setColumns(7);
-		punktestand.setFont(new Font(null, Font.PLAIN, 11));
-		punktestand.setEditable(false);
+		punktestandT = new JTextField("0");
+		punktestandT.setColumns(7);
+		punktestandT.setFont(new Font(null, Font.PLAIN, 11));
+		punktestandT.setEditable(false);
 		
-		punkte.add(punktestand);
-		gesamt.add(punkte);
+		punkteP.add(punktestandT);
+		gesamtP.add(punkteP);
 		
 		//Panel für "Munition" anlegen und "Munition" Icons anlegen
-		JPanel munition = new JPanel();
-		ImageIcon ammo = new ImageIcon(pfad);
-		ammo.setImage(ammo.getImage().getScaledInstance(24, 24, Image.SCALE_DEFAULT));
+		JPanel munitionP = new JPanel();
+		ImageIcon munitionI = new ImageIcon(pfad);
+		munitionI.setImage(munitionI.getImage().getScaledInstance(24, 24, Image.SCALE_DEFAULT));
 		
 		for(int i=0;i<3;i++)
 		{
-			JLabel muni = new JLabel("", ammo, JLabel.LEFT);
-			munition.add(muni);
+			JLabel munitionL = new JLabel("", munitionI, JLabel.LEFT);
+			munitionP.add(munitionL);
 		}
-		munition.setBorder(BorderFactory.createTitledBorder("Munition"));
-		TitledBorder mun = (TitledBorder) munition.getBorder();
+		munitionP.setBorder(BorderFactory.createTitledBorder("Munition"));
+		TitledBorder mun = (TitledBorder) munitionP.getBorder();
 		mun.setTitleFont(new Font(null, Font.PLAIN, 11));
-		munition.setToolTipText("Munitionskapazität");
-		gesamt.add(munition);
+		munitionP.setToolTipText("Munitionskapazität");
+		gesamtP.add(munitionP);
 		
 		//Panel für "Fortschritt" anlegen und Fortschritsbalken "Balken" anlegen
-		JPanel fortschritt = new JPanel();
-		fortschritt.setBorder(BorderFactory.createTitledBorder("Spielfortschritt"));
-		TitledBorder fort = (TitledBorder) fortschritt.getBorder();
-		fort.setTitleFont(new Font(null, Font.PLAIN, 11));
-		fortschritt.setToolTipText("Spielfortschritt");
-		gesamt.add(fortschritt);
+		JPanel fortschrittP = new JPanel();
+		fortschrittP.setBorder(BorderFactory.createTitledBorder("Spielfortschritt"));
+		TitledBorder fortschrittTB = (TitledBorder) fortschrittP.getBorder();
+		fortschrittTB.setTitleFont(new Font(null, Font.PLAIN, 11));
+		fortschrittP.setToolTipText("Spielfortschritt");
+		gesamtP.add(fortschrittP);
 		
-		balken = new JProgressBar(0, 100);
-		balken.setFont(new Font(null, Font.PLAIN, 11));
-		balken.setStringPainted(true);
-		balken.setPreferredSize(new Dimension(85,25));
-		fortschritt.add(balken);
+		fortschrittPB = new JProgressBar(0, 100);
+		fortschrittPB.setFont(new Font(null, Font.PLAIN, 11));
+		fortschrittPB.setStringPainted(true);
+		fortschrittPB.setPreferredSize(new Dimension(85,25));
+		fortschrittP.add(fortschrittPB);
 		
 		//Panel für "Settings" anlegen und Button "Settings" anlegen
-		JPanel set = new JPanel();
-		set.setLayout(new GridBagLayout());
+		JPanel settingsP = new JPanel();
+		settingsP.setLayout(new GridBagLayout());
 		GridBagConstraints gbs = new GridBagConstraints();
-		gesamt.add(set);
+		gesamtP.add(settingsP);
 		
-		JButton settings = new JButton("Settings");
-		settings.setFont(new Font(null, Font.PLAIN, 11));
-		settings.setPreferredSize(new Dimension(90,25));
-		set.add(settings, gbs);
+		JButton settingsB = new JButton("Settings");
+		settingsB.setFont(new Font(null, Font.PLAIN, 11));
+		settingsB.setPreferredSize(new Dimension(90,25));
+		settingsP.add(settingsB, gbs);
 		
 		//Toolbar-Eigenschaften definieren
 		setFloatable(false);
 		setRollover(true);
 		
-		add(gesamt);
+		add(gesamtP);
 	}
 }
