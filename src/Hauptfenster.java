@@ -75,6 +75,12 @@ public class Hauptfenster extends JFrame
 		return toolbar;
 	}
 	
+	public void anzNavigator(boolean sichtbar)
+	{
+		nav.setVisible(sichtbar);
+		pack();
+	}
+	
 	public void anzToolbar(boolean sichtbar)
 	{
 		toolbar.setVisible(sichtbar);

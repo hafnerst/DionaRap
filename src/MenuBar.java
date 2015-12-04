@@ -16,7 +16,7 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 	private static final long serialVersionUID = 1L;
 	Hauptfenster hf;
 	JMenu menuPosToolbar;
-	JMenuItem anzToolbar;
+	JMenuItem anzToolbar, anzNavigator;
 	JRadioButtonMenuItem toolbarNord, toolbarSued;
 	
 	MenuBar(Hauptfenster fenster)
@@ -32,17 +32,29 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		this.add(menuAnsicht);
 		this.add(menuKonfig);
 		
+		// Hilfe -> Spielbeschreibung
 		JMenuItem beschreibung = new JMenuItem("Spielbeschreibung");
 		menuHilfe.add(beschreibung);
-		
+		// Ansicht -> Toolbar anzeigen		
 		anzToolbar = new JCheckBoxMenuItem("Toolbar anzeigen");
 		anzToolbar.setSelected(true);
 		menuAnsicht.add(anzToolbar);
-		
+
+		// Ansicht -> Position Toolbar	
 		menuAnsicht.add(menuPosToolbar);
 		menuPosToolbar.add(toolbarNord = new JRadioButtonMenuItem("Oben"));
 		menuPosToolbar.add(toolbarSued = new JRadioButtonMenuItem("Unten"));
 		toolbarNord.setSelected(true);
+		
+		// Ansicht -> Navigator anzeigen
+		anzNavigator = new JCheckBoxMenuItem("Navigator anzeigen");
+		anzNavigator.setSelected(true);
+		menuAnsicht.add(anzNavigator);
+		
+		
+		// Konfigurierung -> Level einlesen
+		JMenuItem levelEinl = new JMenuItem("Level einlesen");
+		menuKonfig.add(levelEinl);
 		
 		
 		//Action Commands
@@ -53,6 +65,7 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		anzToolbar.addItemListener(this);
 		toolbarNord.addItemListener(this);
 		toolbarSued.addItemListener(this);
+		anzNavigator.addItemListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent event)
@@ -60,7 +73,6 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		new BeschreibungDialog(hf);
 	}
 
-	@Override
 	public void itemStateChanged(ItemEvent e) {
 		Object source = e.getItemSelectable();
 		if(source == anzToolbar)
@@ -93,8 +105,16 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 				hf.posToolbar(false);
 			}
 		}
-	}
-	
-	
-
+		else if(source == anzNavigator)
+		{
+			if(e.getStateChange() == ItemEvent.DESELECTED)
+			{
+				hf.anzNavigator(false);
+			}
+			else if(e.getStateChange() == ItemEvent.SELECTED)
+			{
+				hf.anzNavigator(true);
+			}
+		}
+	}	
 }
