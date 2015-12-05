@@ -1,32 +1,34 @@
-import java.awt.*;
+import javax.swing.*;
+import javax.swing.UIManager.LookAndFeelInfo;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.IOException;
-import java.io.File;
-import java.net.URL;
+import java.util.Vector;
 
-import javax.swing.*; 
-import de.fhwgt.dionarap.model.data.*;
-import de.fhwgt.dionarap.controller.*;
 
 public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 {
 	private static final long serialVersionUID = 1L;
 	Hauptfenster hf;
-	JMenu menuPosToolbar;
+	JMenu menuPosToolbar, menuLookFeel;
 	JMenuItem anzToolbar, anzNavigator;
 	JRadioButtonMenuItem toolbarNord, toolbarSued;
+	Vector<JRadioButtonMenuItem> lookAndFeelMenuItem;
+	LookAndFeelInfo[] lfList;
+	int indexLetzterLaF;
 	
 	MenuBar(Hauptfenster fenster)
 	{
 		hf = fenster;
+		indexLetzterLaF = 0;
 		
 		//Hinzufügen von Menüs
 		JMenu menuHilfe = new JMenu("Hilfe");
 		JMenu menuAnsicht = new JMenu("Ansicht");
 		menuPosToolbar = new JMenu("Position Toolbar");
+		menuLookFeel = new JMenu("Look and Feel");
 		JMenu menuKonfig = new JMenu("Konfigurierung");
 		this.add(menuHilfe);
 		this.add(menuAnsicht);
@@ -35,6 +37,7 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		// Hilfe -> Spielbeschreibung
 		JMenuItem beschreibung = new JMenuItem("Spielbeschreibung");
 		menuHilfe.add(beschreibung);
+		
 		// Ansicht -> Toolbar anzeigen		
 		anzToolbar = new JCheckBoxMenuItem("Toolbar anzeigen");
 		anzToolbar.setSelected(true);
@@ -51,6 +54,20 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		anzNavigator.setSelected(true);
 		menuAnsicht.add(anzNavigator);
 		
+		//Ansicht -> LookAndFeel
+		menuAnsicht.add(menuLookFeel);
+		lfList = UIManager.getInstalledLookAndFeels();
+		lookAndFeelMenuItem = new Vector<JRadioButtonMenuItem>();
+		
+		for(int i = 0; i < lfList.length; i++) {
+			lookAndFeelMenuItem.add(new JRadioButtonMenuItem(lfList[i].getName()));
+			lookAndFeelMenuItem.get(i).setActionCommand(lfList[i].getName());
+			lookAndFeelMenuItem.get(i).addActionListener(this);
+			menuLookFeel.add(lookAndFeelMenuItem.get(i));
+		}
+		lookAndFeelMenuItem.get(0).setSelected(true);
+		
+		
 		
 		// Konfigurierung -> Level einlesen
 		JMenuItem levelEinl = new JMenuItem("Level einlesen");
@@ -58,7 +75,7 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		
 		
 		//Action Commands
-		beschreibung.setActionCommand("Spielebeschreibung");
+		beschreibung.setActionCommand("Spielbeschreibung");
 		
 		//Hinzufügen zum Listener
 		beschreibung.addActionListener(this);
@@ -68,9 +85,35 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		anzNavigator.addItemListener(this);
 	}
 	
-	public void actionPerformed(ActionEvent event)
+	public void actionPerformed(ActionEvent e)
 	{
-		new BeschreibungDialog(hf);
+		if(e.getActionCommand().equals("Spielbeschreibung"))
+		{
+			new BeschreibungDialog(hf);
+		}
+		else 
+		{
+			//Look and Feels abfragen
+			for (int i = 0; i < lfList.length; i++) 
+			{
+				if( e.getActionCommand().equals(lfList[i].getName()) ) 
+				{
+					try 
+					{
+						//System.out.println(lfInfo[i].getClassName());
+						UIManager.setLookAndFeel(lfList[i].getClassName());
+						SwingUtilities.updateComponentTreeUI(hf);
+						SwingUtilities.updateComponentTreeUI(hf.getNavigator());
+						lookAndFeelMenuItem.get(indexLetzterLaF).setSelected(false);
+						indexLetzterLaF = i;
+					}
+					catch (Exception ex) 
+					{
+						JOptionPane.showMessageDialog(this, "Fehler beim laden des Look and Feel", "MessageBox", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		}
 	}
 
 	public void itemStateChanged(ItemEvent e) {
