@@ -35,11 +35,8 @@ public class Hauptfenster extends JFrame
 		setTitle("DionaRap");
 		
 		//Spielfeld im Zentrum des Hauptfensters anlegen
-<<<<<<< HEAD
 		flaeche.add(feld, BorderLayout.CENTER);	
-=======
 		flaeche.add(feld, BorderLayout.CENTER);
->>>>>>> a078bc27e30bd06f6984ce26da120d97397acfcf
 		flaeche.addMouseListener(new ListenerMaus(this));
 		add(flaeche);
 		
@@ -86,7 +83,7 @@ public class Hauptfenster extends JFrame
 		return spiel;
 	}
 	
-<<<<<<< HEAD
+
 	public Spielfeld getSpielfeld()
 	{
 		return feld;
@@ -102,8 +99,6 @@ public class Hauptfenster extends JFrame
 		thema = thema_neu;
 	}
 	
-=======
->>>>>>> a078bc27e30bd06f6984ce26da120d97397acfcf
 	public void anzNavigator(boolean sichtbar)
 	{
 		nav.setVisible(sichtbar);
