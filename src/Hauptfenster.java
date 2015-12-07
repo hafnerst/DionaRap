@@ -34,7 +34,8 @@ public class Hauptfenster extends JFrame
 		setTitle("DionaRap");
 		
 		//Spielfeld im Zentrum des Hauptfensters anlegen
-		flaeche.add(feld, BorderLayout.CENTER);	
+		flaeche.add(feld, BorderLayout.CENTER);
+		flaeche.addMouseListener(new ListenerMaus(this));
 		add(flaeche);
 		
 		toolbar = new Toolbar();
@@ -75,6 +76,11 @@ public class Hauptfenster extends JFrame
 		return toolbar;
 	}
 	
+	public DionaRapModel getModel()
+	{
+		return spiel;
+	}
+	
 	public void anzNavigator(boolean sichtbar)
 	{
 		nav.setVisible(sichtbar);
@@ -85,6 +91,7 @@ public class Hauptfenster extends JFrame
 	{
 		toolbar.setVisible(sichtbar);
 		pack();
+		setLocationRelativeTo(null);
 	}
 	
 	public void posToolbar(boolean richtung)
