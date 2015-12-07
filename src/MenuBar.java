@@ -12,7 +12,7 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 {
 	private static final long serialVersionUID = 1L;
 	Hauptfenster hf;
-	JMenu menuPosToolbar, menuLookFeel;
+	JMenu menuHilfe, menuAnsicht, menuPosToolbar, menuLookFeel, menuKonfig;
 	JMenuItem anzToolbar, anzNavigator;
 	JRadioButtonMenuItem toolbarNord, toolbarSued;
 	Vector<JRadioButtonMenuItem> lookAndFeelMenuItem;
@@ -25,11 +25,11 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		indexLetzterLaF = 0;
 		
 		//Hinzufügen von Menüs
-		JMenu menuHilfe = new JMenu("Hilfe");
-		JMenu menuAnsicht = new JMenu("Ansicht");
+		menuHilfe = new JMenu("Hilfe");
+		menuAnsicht = new JMenu("Ansicht");
 		menuPosToolbar = new JMenu("Position Toolbar");
 		menuLookFeel = new JMenu("Look and Feel");
-		JMenu menuKonfig = new JMenu("Konfigurierung");
+		menuKonfig = new JMenu("Konfigurierung");
 		this.add(menuHilfe);
 		this.add(menuAnsicht);
 		this.add(menuKonfig);
@@ -59,6 +59,7 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		lfList = UIManager.getInstalledLookAndFeels();
 		lookAndFeelMenuItem = new Vector<JRadioButtonMenuItem>();
 		
+		//Hinzufügen der installierten LookAndFeels zum Untermenü
 		for(int i = 0; i < lfList.length; i++) {
 			lookAndFeelMenuItem.add(new JRadioButtonMenuItem(lfList[i].getName()));
 			lookAndFeelMenuItem.get(i).setActionCommand(lfList[i].getName());
@@ -66,8 +67,6 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 			menuLookFeel.add(lookAndFeelMenuItem.get(i));
 		}
 		lookAndFeelMenuItem.get(0).setSelected(true);
-		
-		
 		
 		// Konfigurierung -> Level einlesen
 		JMenuItem levelEinl = new JMenuItem("Level einlesen");
@@ -102,6 +101,7 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 					{
 						//System.out.println(lfInfo[i].getClassName());
 						UIManager.setLookAndFeel(lfList[i].getClassName());
+						//Nach festlegen des LookAndFeel müssen die Bäume frisch aufgebaut werden
 						SwingUtilities.updateComponentTreeUI(hf);
 						SwingUtilities.updateComponentTreeUI(hf.getNavigator());
 						lookAndFeelMenuItem.get(indexLetzterLaF).setSelected(false);

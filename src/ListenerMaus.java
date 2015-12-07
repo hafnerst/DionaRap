@@ -2,6 +2,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+<<<<<<< HEAD
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -9,6 +10,11 @@ import javax.swing.JRadioButtonMenuItem;
 
 import de.fhwgt.dionarap.controller.DionaRapController;
 import de.fhwgt.dionarap.model.data.*;
+=======
+
+import de.fhwgt.dionarap.controller.DionaRapController;
+import de.fhwgt.dionarap.model.data.DionaRapModel;
+>>>>>>> a078bc27e30bd06f6984ce26da120d97397acfcf
 import de.fhwgt.dionarap.model.objects.Player;
 
 public class ListenerMaus extends MouseAdapter implements ActionListener
@@ -17,6 +23,7 @@ public class ListenerMaus extends MouseAdapter implements ActionListener
 	DionaRapModel model;
 	DionaRapController controller;
 	Player spieler;
+<<<<<<< HEAD
 	int x_klick, y_klick;
 	JMenuItem letztesThema;
 	JPopupMenu popup;
@@ -24,10 +31,16 @@ public class ListenerMaus extends MouseAdapter implements ActionListener
 	JMenuItem alien, dracula, helsing, luke, spacewars, squarehead, vader;
 	
 	public ListenerMaus(Hauptfenster fenster)
+=======
+	int xKlick, yKlick;
+	
+	ListenerMaus(Hauptfenster fenster)
+>>>>>>> a078bc27e30bd06f6984ce26da120d97397acfcf
 	{
 		hf = fenster;
 		model = hf.getModel();
 		controller = hf.getSteuerung();
+<<<<<<< HEAD
 		
 		popup = new JPopupMenu();
 		
@@ -64,10 +77,13 @@ public class ListenerMaus extends MouseAdapter implements ActionListener
 		menu.add(vader);
 		
 		popup.add(menu);
+=======
+>>>>>>> a078bc27e30bd06f6984ce26da120d97397acfcf
 	}
 	
 	public void mousePressed(MouseEvent e) 
 	{
+<<<<<<< HEAD
 		if(e.getButton()==MouseEvent.BUTTON1)
 		{
 			int ret_val = 0;
@@ -95,10 +111,33 @@ public class ListenerMaus extends MouseAdapter implements ActionListener
 	}
 	
 	private int klick_richtung()
+=======
+		int ret_val = 0;
+		spieler = model.getPlayer();
+		xKlick = (e.getX()/50);
+		yKlick = (e.getY()/50);
+		ret_val = klickRichtung();
+		
+		if(ret_val !=0 )
+		{
+			if (ret_val == 5)
+			{
+				controller.shoot();
+			}
+			else
+			{
+				controller.movePlayer(ret_val);
+			}
+		}
+	}
+	
+	private int klickRichtung()
+>>>>>>> a078bc27e30bd06f6984ce26da120d97397acfcf
 	{
 		int x = spieler.getX();
 		int y = spieler.getY();
 		
+<<<<<<< HEAD
 		if(x == x_klick && y == y_klick)
 		{
 			return 5;
@@ -147,5 +186,49 @@ public class ListenerMaus extends MouseAdapter implements ActionListener
 		letztesThema.setSelected(true);
 		hf.setThema(thema);
 		feld.setPawns();
+=======
+		if(x == xKlick && y == yKlick)
+		{
+			return 5;
+		}
+		else if(x == xKlick && y-1 == yKlick)
+		{
+			return 8;
+		}
+		else if(x+1 == xKlick && y-1 == yKlick)
+		{
+			return 9;
+		}
+		else if(x == xKlick && y-1 == yKlick)
+		{
+			return 8;
+		}
+		else if(x+1 == xKlick && y == yKlick)
+		{
+			return 6;
+		}
+		else if(x+1 == xKlick && y+1 == yKlick)
+		{
+			return 3;
+		}
+		else if(x == xKlick && y+1 == yKlick)
+		{
+			return 2;
+		}
+		else if(x-1 == xKlick && y+1 == yKlick)
+		{
+			return 1;
+		}
+		else if(x-1 == xKlick && y == yKlick)
+		{
+			return 4;
+		}
+		else if(x-1 == xKlick && y-1 == yKlick)
+		{
+			return 7;
+		}
+		return 0;
+>>>>>>> a078bc27e30bd06f6984ce26da120d97397acfcf
 	}
+	
 }
