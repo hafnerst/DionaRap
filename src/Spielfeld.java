@@ -24,11 +24,12 @@ public class Spielfeld extends JPanel
 	// Diese Variable wird ben�tigt, da JPanel das Interface Serializable implementiert
 	private static final long serialVersionUID = 1L;
 	DionaRapModel model;
-	JLabel[][] felder = new JLabel[10][10];
+	JLabel[][] felder = new JLabel[10][10];	
+	Hauptfenster hf;
 	
-	
-	public Spielfeld(DionaRapModel spiel)
+	public Spielfeld(DionaRapModel spiel, Hauptfenster fenster)
 	{
+		hf = fenster;
 		model = spiel;
 		//10 Zeilen, 10 Spalten und 0 Abstand zwischen Elementen
 		setLayout(new GridLayout(10,10,0,0));
@@ -60,8 +61,9 @@ public class Spielfeld extends JPanel
 	}
 	public void setPawns()
 	{
+		String thema = hf.getThema();
 		AbstractPawn[] figuren = model.getAllPawns();
-		String pfad = System.getProperty("user.dir")+"/images/squarehead";
+		String pfad = System.getProperty("user.dir")+"/images/"+thema;
 		
 		Player spieler = model.getPlayer();
 		String richtung = Integer.toString(spieler.getViewDirection());

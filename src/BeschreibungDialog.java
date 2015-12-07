@@ -5,6 +5,7 @@ import java.net.URL;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 public class BeschreibungDialog 
 {
@@ -15,7 +16,6 @@ public class BeschreibungDialog
 		JDialog dialogBe = new JDialog(hf, "Spielbeschreibung");
 	
 		JEditorPane editorPane = new JEditorPane();
-		
 		editorPane.setVisible(true);
 		editorPane.setEditable(false);
 
@@ -29,6 +29,8 @@ public class BeschreibungDialog
 		{
 			e.printStackTrace();
 		}
+		
+		JScrollPane scrollPane = new JScrollPane(editorPane);
 	
 		dialogBe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		dialogBe.setVisible(true);
@@ -36,7 +38,7 @@ public class BeschreibungDialog
 		dialogBe.setModal(true);
 		dialogBe.setLocationRelativeTo(null);
 
-		dialogBe.add(editorPane);
+		dialogBe.add(scrollPane);
 	}
 
 }
