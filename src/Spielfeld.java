@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 
 import de.fhwgt.dionarap.model.data.DionaRapModel;
 import de.fhwgt.dionarap.model.objects.AbstractPawn;
+import de.fhwgt.dionarap.model.objects.Ammo;
 import de.fhwgt.dionarap.model.objects.Destruction;
 import de.fhwgt.dionarap.model.objects.Obstacle;
 import de.fhwgt.dionarap.model.objects.Opponent;
@@ -89,6 +90,10 @@ public class Spielfeld extends JPanel
 			else if(figuren[i] instanceof Destruction)
 			{
 				felder[figuren[i].getX()][figuren[i].getY()].setIcon(new ImageIcon(pfad+"/destruction.gif"));
+			}
+			else if(figuren[i] instanceof Ammo)
+			{
+				felder[figuren[i].getX()][figuren[i].getY()].setIcon(new ImageIcon(pfad+"/ammo.png"));
 			}
 		}
 	}

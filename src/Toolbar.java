@@ -14,6 +14,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.border.TitledBorder;
+import de.fhwgt.dionarap.model.data.DionaRapModel;
 
 import java.awt.event.ActionListener;
 
@@ -26,9 +27,19 @@ public class Toolbar extends JToolBar
 	JButton spiel_neuB;
 	JTextField punktestandT;
 	JProgressBar fortschrittPB;
+	Hauptfenster hf;
+	DionaRapModel spiel;
+	JPanel munitionP;
+	ImageIcon munitionI;
+	JLabel munitionL;
+	JLabel[] muni;
+	int mun_menge;
 
-	public Toolbar()
+	public Toolbar(Hauptfenster haupt)
 	{	
+		hf = haupt;
+		spiel = (DionaRapModel) hf.getModel();
+		
 		gesamtP.setLayout(new GridLayout(1,5,0,0));
 		gesamtP.setPreferredSize(new Dimension(500,60));
 		
@@ -67,25 +78,16 @@ public class Toolbar extends JToolBar
 		punktestandT.setColumns(7);
 		punktestandT.setFont(new Font(null, Font.PLAIN, 11));
 		punktestandT.setEditable(false);
-		
 		punkteP.add(punktestandT);
 		gesamtP.add(punkteP);
 		
 		//Panel für "Munition" anlegen und "Munition" Icons anlegen
-		JPanel munitionP = new JPanel();
-		ImageIcon munitionI = new ImageIcon(pfad);
+		munitionP = new JPanel();
+		munitionI = new ImageIcon(pfad);
 		munitionI.setImage(munitionI.getImage().getScaledInstance(24, 24, Image.SCALE_DEFAULT));
-		
-		for(int i=0;i<3;i++)
-		{
-			JLabel munitionL = new JLabel("", munitionI, JLabel.LEFT);
-			munitionP.add(munitionL);
-		}
-		munitionP.setBorder(BorderFactory.createTitledBorder("Munition"));
-		TitledBorder mun = (TitledBorder) munitionP.getBorder();
-		mun.setTitleFont(new Font(null, Font.PLAIN, 11));
-		munitionP.setToolTipText("Munitionskapazität");
 		gesamtP.add(munitionP);
+
+		setMunition();
 		
 		//Panel für "Fortschritt" anlegen und Fortschritsbalken "Balken" anlegen
 		JPanel fortschrittP = new JPanel();
@@ -117,5 +119,58 @@ public class Toolbar extends JToolBar
 		setRollover(true);
 		
 		add(gesamtP);
+	}
+	
+	public void setMunition()
+	{
+		mun_menge = spiel.getShootAmount();
+		System.out.println(mun_menge);
+		muni = new JLabel[3];
+		
+		if(mun_menge>3)
+		{
+			muni[0] = new JLabel("*"+mun_menge);
+			muni[1] = new JLabel("", munitionI, JLabel.LEFT);
+			muni[2] = new JLabel("", munitionI, JLabel.LEFT);
+			
+			munitionP.add(muni[0]);
+			munitionP.add(muni[1]);
+			munitionP.add(muni[2]);
+		}
+		else if(mun_menge<=3 && mun_menge!=0)
+		{
+			for(int i=0;i<mun_menge;i++)
+			{
+				muni[i] = new JLabel("", munitionI, JLabel.LEFT);
+				munitionP.add(muni[i]);
+			}
+		}
+		else if(mun_menge==0)
+		{
+			//munitionP.setBackground(Color.red);
+		}
+		
+		munitionP.setBorder(BorderFactory.createTitledBorder("Munition"));
+		TitledBorder mun = (TitledBorder) munitionP.getBorder();
+		mun.setTitleFont(new Font(null, Font.PLAIN, 11));
+		munitionP.setToolTipText("Munitionskapazität");
+	}
+	
+	public void deleteMunition()
+	{
+		if(mun_menge>3)
+		{
+			for(int i=0;i<3;i++)
+			{
+				munitionP.remove(muni[i]);
+			}
+		}
+		else
+		{
+			for(int i=0;i<mun_menge;i++)
+			{
+				munitionP.remove(muni[i]);
+			}
+		}
 	}
 }

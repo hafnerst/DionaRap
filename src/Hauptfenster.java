@@ -17,8 +17,10 @@ public class Hauptfenster extends JFrame
 	// Diese Variable wird ben�tigt, da JFrame das Interface Serializable implementiert
 	private static final long serialVersionUID = 1L;
 	String thema = "squarehead";
+	int shoot_ammount = 5;
 	JPanel flaeche = new JPanel();
 	DionaRapModel spiel = new DionaRapModel();
+	MTConfiguration conf = new MTConfiguration();
 	DionaRapController steuerung = new DionaRapController(spiel);
 	Spielfeld feld = new Spielfeld(spiel, this);
 	int anz_gegner = spiel.getOpponentCount();
@@ -28,6 +30,23 @@ public class Hauptfenster extends JFrame
 	
 	public Hauptfenster()
 	{
+		setGame();
+		
+		//Konfiguration für Multi-Threading definieren
+		conf.setAlgorithmAStarActive(true);
+		conf.setAvoidCollisionWithObstacles(true);
+		conf.setAvoidCollisionWithOpponent(false);
+		conf.setMinimumTime(800);				//0,8 Sekunden
+		conf.setShotGetsOwnThread(true);		//nicht unbegrenzte Anzahl Schüsse
+		conf.setOpponentStartWaitTime(5000);	//5 Sekunden am Anfang Schlaf
+		conf.setOpponentWaitTime(2000);			//Gegner warten vor jedem Zug 2 Sekunden
+		conf.setShotWaitTime(500);				//ein Schuss benötigt eine halbe Sekunde	
+		conf.setRandomOpponentWaitTime(false);	//keine zufällige Wartezeit
+		conf.setDynamicOpponentWaitTime(false);	//immer gleichlang warten
+		
+		//Controller Konfigurationsdatei übergeben
+		steuerung.setMultiThreaded(conf);
+		
 		//Operation fuer Close-Button
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -40,7 +59,7 @@ public class Hauptfenster extends JFrame
 		flaeche.addMouseListener(new ListenerMaus(this));
 		add(flaeche);
 		
-		toolbar = new Toolbar();
+		toolbar = new Toolbar(this);
 		add(toolbar, BorderLayout.NORTH);
 		
 		menue = new MenuBar(this);
@@ -61,6 +80,11 @@ public class Hauptfenster extends JFrame
 		spiel.addModelChangedEventListener(new ListenerModel(feld));
 		addKeyListener(new ListenerTasten());
 		requestFocus();
+	}
+	
+	public void setGame()
+	{
+		spiel.setShootAmount(shoot_ammount);
 	}
 	
 	public DionaRapController getSteuerung()

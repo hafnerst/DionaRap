@@ -9,9 +9,10 @@ import de.fhwgt.dionarap.model.listener.*;
 public class ListenerModel implements DionaRapListener
 {
 	Spielfeld sfeld;
-	String pfad = System.getProperty("user.dir")+"/images/";
+	String pfad;
 	int eingabe;
 	Hauptfenster hf;
+	Toolbar tool;
 	
 	public ListenerModel(Spielfeld feld)
 	{
@@ -36,11 +37,18 @@ public class ListenerModel implements DionaRapListener
 		int akt_gegner = anz_gegner-model.getOpponentCount();
 		int fortschritt = (int)(((double)akt_gegner/(double)anz_gegner)*100);
 		toolbar.fortschrittPB.setValue(fortschritt);
+		
+		//Anpassung der Munitionsanzeige
+		tool = (Toolbar) hf.getToolbar();
+		tool.deleteMunition();
+		tool.setMunition();
 	}
 
 	public void statusChanged(GameStatusEvent event) 
 	{
 		DionaRapModel model = (DionaRapModel)event.getSource();
+		String thema = hf.getThema();
+		pfad = System.getProperty("user.dir")+"/images/"+thema;
 		
 		
 		Toolbar toolbar = hf.getToolbar();
@@ -50,11 +58,11 @@ public class ListenerModel implements DionaRapListener
 		
 		if(model.isGameOver())
 		{
-			eingabe = JOptionPane.showOptionDialog(hf,"Game over!","Spielende",JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon(pfad+"gameover.gif"), optionen, optionen[1]);
+			eingabe = JOptionPane.showOptionDialog(hf,"Game over!","Spielende",JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon(pfad+"/loss.gif"), optionen, optionen[1]);
 		}
 		if(model.isGameWon())
 		{
-			eingabe = JOptionPane.showOptionDialog(hf,"Gewonnen!","Spielende",JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon(pfad+"gewonnen.gif"), optionen, optionen[1]);
+			eingabe = JOptionPane.showOptionDialog(hf,"Gewonnen!","Spielende",JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, new ImageIcon(pfad+"/win.gif"), optionen, optionen[1]);
 		}
 		
 		if (eingabe == 1)
