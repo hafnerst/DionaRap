@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -147,7 +148,7 @@ public class Toolbar extends JToolBar
 		}
 		else if(mun_menge==0)
 		{
-			//munitionP.setBackground(Color.red);
+			munitionP.setBackground(Color.red);
 		}
 		
 		munitionP.setBorder(BorderFactory.createTitledBorder("Munition"));

@@ -1,6 +1,7 @@
 import java.awt.*;
 import javax.swing.*; 
 import de.fhwgt.dionarap.model.data.*;
+import de.fhwgt.dionarap.model.objects.Ammo;
 import de.fhwgt.dionarap.controller.*;
 
 /**
@@ -18,6 +19,7 @@ public class Hauptfenster extends JFrame
 	private static final long serialVersionUID = 1L;
 	String thema = "squarehead";
 	int shoot_ammount = 5;
+	int ammo_ammount = 3;
 	JPanel flaeche = new JPanel();
 	DionaRapModel spiel = new DionaRapModel();
 	MTConfiguration conf = new MTConfiguration();
@@ -30,7 +32,7 @@ public class Hauptfenster extends JFrame
 	
 	public Hauptfenster()
 	{
-		setGame();
+		//setGame();
 		
 		//Konfiguration für Multi-Threading definieren
 		conf.setAlgorithmAStarActive(true);
@@ -85,6 +87,12 @@ public class Hauptfenster extends JFrame
 	public void setGame()
 	{
 		spiel.setShootAmount(shoot_ammount);
+		
+		for(int i=0; i<ammo_ammount; i++)
+		{
+			Ammo ammo = new Ammo();
+			spiel.addAmmo(ammo);
+		}
 	}
 	
 	public DionaRapController getSteuerung()

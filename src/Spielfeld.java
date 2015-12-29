@@ -58,6 +58,7 @@ public class Spielfeld extends JPanel
 				add(felder[j][i]);
 			}
 		}
+		hf.setGame();
 		setPawns();
 	}
 	public void setPawns()
