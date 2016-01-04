@@ -34,7 +34,8 @@ public class Toolbar extends JToolBar
 	ImageIcon munitionI;
 	JLabel munitionL;
 	JLabel[] muni;
-	int mun_menge;
+	JPanel[] munitionBilder;
+	int mun_menge = 0;
 
 	public Toolbar(Hauptfenster haupt)
 	{	
@@ -53,7 +54,6 @@ public class Toolbar extends JToolBar
 		spiel_neuB = new JButton("Neues Spiel");
 		spiel_neuB.setEnabled(false);
 		spiel_neuB.setFont(new Font(null, Font.PLAIN, 11));
-		//spiel_neuB.setPreferredSize(new Dimension(90,25));
 		spiel_neuB.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent event)
@@ -82,13 +82,16 @@ public class Toolbar extends JToolBar
 		punkteP.add(punktestandT);
 		gesamtP.add(punkteP);
 		
-		//Panel für "Munition" anlegen und "Munition" Icons anlegen
+		//Panel für "Munition" anlegen
 		munitionP = new JPanel();
-		munitionI = new ImageIcon(pfad);
-		munitionI.setImage(munitionI.getImage().getScaledInstance(24, 24, Image.SCALE_DEFAULT));
-		gesamtP.add(munitionP);
-
-		setMunition();
+        munitionBilder = new MunitionZeichnen[3];
+        for (int i = 0; i < munitionBilder.length; i++){
+            munitionBilder[i] = new MunitionZeichnen(hf);
+            munitionBilder[i].setAlignmentX(LEFT);
+            munitionBilder[i].setPreferredSize(new Dimension(24, 24));
+        }
+        setMunition();
+        gesamtP.add(munitionP);
 		
 		//Panel für "Fortschritt" anlegen und Fortschritsbalken "Balken" anlegen
 		JPanel fortschrittP = new JPanel();
@@ -125,31 +128,26 @@ public class Toolbar extends JToolBar
 	public void setMunition()
 	{
 		mun_menge = spiel.getShootAmount();
-		System.out.println(mun_menge);
-		muni = new JLabel[3];
-		
-		if(mun_menge>3)
-		{
-			muni[0] = new JLabel("*"+mun_menge);
-			muni[1] = new JLabel("", munitionI, JLabel.LEFT);
-			muni[2] = new JLabel("", munitionI, JLabel.LEFT);
-			
-			munitionP.add(muni[0]);
-			munitionP.add(muni[1]);
-			munitionP.add(muni[2]);
-		}
-		else if(mun_menge<=3 && mun_menge!=0)
-		{
-			for(int i=0;i<mun_menge;i++)
-			{
-				muni[i] = new JLabel("", munitionI, JLabel.LEFT);
-				munitionP.add(muni[i]);
-			}
-		}
-		else if(mun_menge==0)
-		{
-			munitionP.setBackground(Color.red);
-		}
+        if (mun_menge > 3) {
+            
+            munitionL = new JLabel("*" + mun_menge);
+            munitionL.setHorizontalAlignment(LEFT);
+            munitionP.add(munitionL);
+            munitionP.add(munitionBilder[0]);
+            munitionP.add(munitionBilder[1]);
+            munitionP.revalidate();
+            munitionP.repaint();
+             
+        }
+        else
+        {
+            for (int i = 0; i < mun_menge; i++) {
+                 
+                munitionP.add(munitionBilder[i]);
+                munitionP.revalidate();
+                munitionP.repaint();
+            }
+        }
 		
 		munitionP.setBorder(BorderFactory.createTitledBorder("Munition"));
 		TitledBorder mun = (TitledBorder) munitionP.getBorder();
@@ -159,19 +157,23 @@ public class Toolbar extends JToolBar
 	
 	public void deleteMunition()
 	{
-		if(mun_menge>3)
-		{
-			for(int i=0;i<3;i++)
-			{
-				munitionP.remove(muni[i]);
-			}
-		}
-		else
-		{
-			for(int i=0;i<mun_menge;i++)
-			{
-				munitionP.remove(muni[i]);
-			}
-		}
+        if (mun_menge > 3) {
+            
+            munitionP.remove(munitionL);
+            munitionP.remove(munitionBilder[0]);
+            munitionP.remove(munitionBilder[1]);
+            munitionP.revalidate();
+            munitionP.repaint();
+             
+        }
+        else
+        {
+            for (int i = 0; i < mun_menge; i++) {
+                 
+                munitionP.removeAll();
+                munitionP.revalidate();
+                munitionP.repaint();
+            }
+        }
 	}
 }

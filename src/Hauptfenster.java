@@ -40,7 +40,7 @@ public class Hauptfenster extends JFrame
 		conf.setAvoidCollisionWithOpponent(false);
 		conf.setMinimumTime(800);				//0,8 Sekunden
 		conf.setShotGetsOwnThread(true);		//nicht unbegrenzte Anzahl Schüsse
-		conf.setOpponentStartWaitTime(5000);	//5 Sekunden am Anfang Schlaf
+		conf.setOpponentStartWaitTime(3000);	//5 Sekunden am Anfang Schlaf
 		conf.setOpponentWaitTime(2000);			//Gegner warten vor jedem Zug 2 Sekunden
 		conf.setShotWaitTime(500);				//ein Schuss benötigt eine halbe Sekunde	
 		conf.setRandomOpponentWaitTime(false);	//keine zufällige Wartezeit
