@@ -18,7 +18,7 @@ public class Hauptfenster extends JFrame
 	// Diese Variable wird ben�tigt, da JFrame das Interface Serializable implementiert
 	private static final long serialVersionUID = 1L;
 	String thema = "squarehead";
-	int shoot_ammount = 5;
+	int shoot_ammount = 3;
 	int ammo_ammount = 3;
 	JPanel flaeche = new JPanel();
 	DionaRapModel spiel = new DionaRapModel();
@@ -29,6 +29,7 @@ public class Hauptfenster extends JFrame
 	Toolbar toolbar;
 	Navigator nav;
 	JMenuBar menue;
+	Settings einstellungen;
 	
 	public Hauptfenster()
 	{
@@ -75,8 +76,8 @@ public class Hauptfenster extends JFrame
 		//Erst packen und dann in die Mitte setzen, davor falsche Groesse 
 		setLocationRelativeTo(null);
 		setVisible(true);
-		
 		nav = new Navigator(this);
+		
 		
 		addComponentListener(new ListenerFenster());
 		spiel.addModelChangedEventListener(new ListenerModel(feld));

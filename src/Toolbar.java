@@ -35,6 +35,7 @@ public class Toolbar extends JToolBar
 	JLabel munitionL;
 	JLabel[] muni;
 	JPanel[] munitionBilder;
+	Settings einstellungen;
 	int mun_menge = 0;
 
 	public Toolbar(Hauptfenster haupt)
@@ -116,6 +117,13 @@ public class Toolbar extends JToolBar
 		JButton settingsB = new JButton("Settings");
 		settingsB.setFont(new Font(null, Font.PLAIN, 11));
 		settingsB.setPreferredSize(new Dimension(90,25));
+		settingsB.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent event)
+			{
+				einstellungen = new Settings(hf, hf.conf);
+			}
+		});
 		settingsP.add(settingsB, gbs);
 		
 		//Toolbar-Eigenschaften definieren
