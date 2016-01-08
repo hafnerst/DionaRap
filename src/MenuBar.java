@@ -72,12 +72,14 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		JMenuItem levelEinl = new JMenuItem("Level einlesen");
 		menuKonfig.add(levelEinl);
 		
+		// Konfigurierung -> Spieleinstellungen
 		spielEinstellungen = new JMenuItem("Spieleinstellungen");
 		menuKonfig.add(spielEinstellungen);
 		
 		
 		//Action Commands
 		beschreibung.setActionCommand("Spielbeschreibung");
+		spielEinstellungen.setActionCommand("Einstellungen");
 		
 		//Hinzufügen zum Listener
 		beschreibung.addActionListener(this);
@@ -85,6 +87,7 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		toolbarNord.addItemListener(this);
 		toolbarSued.addItemListener(this);
 		anzNavigator.addItemListener(this);
+		spielEinstellungen.addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e)
@@ -93,8 +96,11 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		{
 			new BeschreibungDialog(hf);
 		}
-		else 
+		else if(e.getActionCommand().equals("Einstellungen"))
 		{
+			new SpielEinstellungen(hf, hf.conf);
+		}
+		else {
 			//Look and Feels abfragen
 			for (int i = 0; i < lfList.length; i++) 
 			{
