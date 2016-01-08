@@ -33,7 +33,6 @@ public class Hauptfenster extends JFrame
 	
 	public Hauptfenster()
 	{
-		//setGame();
 		
 		//Konfiguration für Multi-Threading definieren
 		conf.setAlgorithmAStarActive(true);

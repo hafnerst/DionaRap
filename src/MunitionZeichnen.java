@@ -17,7 +17,7 @@ public class MunitionZeichnen extends JPanel
 	
 	public void paint(Graphics g)
 	{
-		Graphics2D munitionsGrafik = (Graphics2D) g; 
+		Graphics2D munitionsGrafik = (Graphics2D) g;
 		munitionsGrafik.drawImage(munitionImage, 0, 0, this);
 	}
 }

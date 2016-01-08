@@ -1,10 +1,8 @@
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -136,7 +134,8 @@ public class Toolbar extends JToolBar
 	public void setMunition()
 	{
 		mun_menge = spiel.getShootAmount();
-        if (mun_menge > 3) {
+        if (mun_menge > 3) 
+        {
             
             munitionL = new JLabel("*" + mun_menge);
             munitionL.setHorizontalAlignment(LEFT);
@@ -145,7 +144,6 @@ public class Toolbar extends JToolBar
             munitionP.add(munitionBilder[1]);
             munitionP.revalidate();
             munitionP.repaint();
-             
         }
         else
         {

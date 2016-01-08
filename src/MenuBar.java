@@ -13,7 +13,7 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 	private static final long serialVersionUID = 1L;
 	Hauptfenster hf;
 	JMenu menuHilfe, menuAnsicht, menuPosToolbar, menuLookFeel, menuKonfig;
-	JMenuItem anzToolbar, anzNavigator;
+	JMenuItem anzToolbar, anzNavigator, spielEinstellungen;
 	JRadioButtonMenuItem toolbarNord, toolbarSued;
 	Vector<JRadioButtonMenuItem> lookAndFeelMenuItem;
 	LookAndFeelInfo[] lfList;
@@ -71,6 +71,9 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		// Konfigurierung -> Level einlesen
 		JMenuItem levelEinl = new JMenuItem("Level einlesen");
 		menuKonfig.add(levelEinl);
+		
+		spielEinstellungen = new JMenuItem("Spieleinstellungen");
+		menuKonfig.add(spielEinstellungen);
 		
 		
 		//Action Commands

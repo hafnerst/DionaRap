@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:element name="Location">
+    	<xsd:complexType>
+      		<xsd:attribute name="x" type="xsd:integer"/>
+      		<xsd:attribute name="y" type="xsd:integer"/>
+    	</xsd:complexType>
+  	</xsd:element>
+
+	<xsd:element name="GameBoard">
+    	<xsd:complexType>
+    	<xsd:sequence minOccurs="1">
+  			<xsd:element name="GridSize" minOccurs="1" maxOccurs="1">
+    			<xsd:complexType>
+      			<xsd:attribute name="x" type="xsd:positiveInteger" use="required"/>
+      			<xsd:attribute name="y" type="xsd:positiveInteger" use="required"/>
+    			</xsd:complexType>
+  			</xsd:element>
+		</xsd:sequence>
+		</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="Vortexes">
+  		<xsd:complexType>
+  		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+  		<xsd:element name="Vortex">
+    		<xsd:complexType>
+    		<xsd:all>
+    			<xsd:element ref="Location" minOccurs="1" maxOccurs="1"/>
+  				<xsd:element name="Destination" minOccurs="1" maxOccurs="1">
+    				<xsd:complexType>
+      				<xsd:attribute name="x" type="xsd:integer"/>
+      				<xsd:attribute name="y" type="xsd:integer"/>
+    				</xsd:complexType>
+  				</xsd:element>
+  			</xsd:all>
+  			</xsd:complexType>
+  		</xsd:element>
+  		</xsd:sequence>
+  		</xsd:complexType>
+    </xsd:element>
+
+
+	<xsd:element name="Opponents">
+    	<xsd:complexType>
+      		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+    				<xsd:element name="Opponent">
+    					<xsd:complexType>
+      						<xsd:attribute name="x" type="xsd:integer" />
+      						<xsd:attribute name="y" type="xsd:integer" />
+    					</xsd:complexType>
+  					</xsd:element>
+  			</xsd:sequence>
+      		<xsd:attribute name="startWaitTime" type="xsd:positiveInteger" use="required"/>
+      		<xsd:attribute name="avoidObstacleCollision" type="xsd:boolean" use="required"/>
+      		<xsd:attribute name="avoidOpponentCollision" type="xsd:boolean" use="required"/>
+      		<xsd:attribute name="opponentWaitTime" type="xsd:positiveInteger" use="required"/>
+      		<xsd:attribute name="waitTimeRandom" type="xsd:boolean" use="required"/>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="Ammo">
+    	<xsd:complexType>
+      		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+    			<xsd:element ref="Location" minOccurs="1" maxOccurs="1"/>
+  			</xsd:sequence>
+  			<xsd:attribute name="value" type="xsd:integer" use="required"/>
+      		<xsd:attribute name="startAmount" type="xsd:integer" use="required"/>
+    	</xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="Obstacles">
+    	<xsd:complexType>
+      		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+    			<xsd:element name="Obstacle">
+    					<xsd:complexType>
+      						<xsd:attribute name="x" type="xsd:integer" />
+      						<xsd:attribute name="y" type="xsd:integer" />
+    					</xsd:complexType>
+  					</xsd:element>
+  			</xsd:sequence>
+    	</xsd:complexType>
+    </xsd:element>
+
+<xsd:element name="Level">
+	<xsd:complexType>
+  		<xsd:all>
+			<xsd:element ref="GameBoard"/>
+			<xsd:element ref="Vortexes"/>
+			<xsd:element ref="Opponents"/>
+			<xsd:element ref="Ammo"/>
+			<xsd:element ref="Obstacles"/>
+		</xsd:all>
+	</xsd:complexType>
+</xsd:element>
+
+
+</xsd:schema>
+
