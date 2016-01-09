@@ -12,9 +12,9 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 {
 	private static final long serialVersionUID = 1L;
 	Hauptfenster hf;
-	JMenu menuHilfe, menuAnsicht, menuPosToolbar, menuLookFeel, menuKonfig;
+	JMenu menuHilfe, menuAnsicht, menuPosToolbar, menuLookFeel, menuKonfig, menuAuswahlLevel;
 	JMenuItem anzToolbar, anzNavigator, spielEinstellungen;
-	JRadioButtonMenuItem toolbarNord, toolbarSued;
+	JRadioButtonMenuItem toolbarNord, toolbarSued, levelEinf, levelMit, levelSchw, levelToed;
 	Vector<JRadioButtonMenuItem> lookAndFeelMenuItem;
 	LookAndFeelInfo[] lfList;
 	int indexLetzterLaF;
@@ -30,6 +30,7 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		menuPosToolbar = new JMenu("Position Toolbar");
 		menuLookFeel = new JMenu("Look and Feel");
 		menuKonfig = new JMenu("Konfigurierung");
+		menuAuswahlLevel = new JMenu("Levelauswahl");
 		this.add(menuHilfe);
 		this.add(menuAnsicht);
 		this.add(menuKonfig);
@@ -69,8 +70,13 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		lookAndFeelMenuItem.get(0).setSelected(true);
 		
 		// Konfigurierung -> Level einlesen
-		JMenuItem levelEinl = new JMenuItem("Level einlesen");
-		menuKonfig.add(levelEinl);
+		menuAuswahlLevel.add(levelEinf = new JRadioButtonMenuItem("Einfach"));
+		menuAuswahlLevel.add(levelMit = new JRadioButtonMenuItem("Mittel"));
+		menuAuswahlLevel.add(levelSchw = new JRadioButtonMenuItem("Schwer"));
+		menuAuswahlLevel.add(levelToed = new JRadioButtonMenuItem("Toedlich"));
+		levelEinf.setSelected(true);
+		
+		menuKonfig.add(menuAuswahlLevel);
 		
 		// Konfigurierung -> Spieleinstellungen
 		spielEinstellungen = new JMenuItem("Spieleinstellungen");
@@ -88,6 +94,10 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		toolbarSued.addItemListener(this);
 		anzNavigator.addItemListener(this);
 		spielEinstellungen.addActionListener(this);
+		levelEinf.addItemListener(this);
+		levelMit.addItemListener(this);
+		levelSchw.addItemListener(this);
+		levelToed.addItemListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e)
@@ -98,7 +108,7 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		}
 		else if(e.getActionCommand().equals("Einstellungen"))
 		{
-			new SpielEinstellungen(hf, hf.conf);
+			new SpielEinstellungen(hf, hf.getLevel());
 		}
 		else {
 			//Look and Feels abfragen
@@ -167,6 +177,25 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 			{
 				hf.anzNavigator(true);
 			}
+		}
+		else if(source == levelEinf)
+		{
+			//hf.startNewGame("level_einfach.xml");
+		}
+		
+		else if(source == levelMit)
+		{
+			//hf.startNewGame("level_mittel.xml");
+		}
+		
+		else if(source == levelSchw)
+		{
+			//hf.startNewGame("level_schwer.xml");
+		}
+		
+		else if(source == levelToed)
+		{
+			//hf.startNewGame("level_toedlich.xml");
 		}
 	}	
 }

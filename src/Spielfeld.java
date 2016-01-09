@@ -7,6 +7,7 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 
 import de.fhwgt.dionarap.model.data.DionaRapModel;
+import de.fhwgt.dionarap.model.data.Grid;
 import de.fhwgt.dionarap.model.objects.AbstractPawn;
 import de.fhwgt.dionarap.model.objects.Ammo;
 import de.fhwgt.dionarap.model.objects.Destruction;
@@ -25,20 +26,27 @@ public class Spielfeld extends JPanel
 	// Diese Variable wird ben�tigt, da JPanel das Interface Serializable implementiert
 	private static final long serialVersionUID = 1L;
 	DionaRapModel model;
-	JLabel[][] felder = new JLabel[10][10];	
+	JLabel[][] felder;	
 	Hauptfenster hf;
+	int x_flaeche, y_flaeche;
 	
 	public Spielfeld(DionaRapModel spiel, Hauptfenster fenster)
 	{
 		hf = fenster;
 		model = spiel;
+		
+		Grid spielflaeche = model.getGrid();
+		x_flaeche = spielflaeche.getGridSizeX();
+		y_flaeche = spielflaeche.getGridSizeY();
+		
+		felder = new JLabel[x_flaeche][y_flaeche];
 		//10 Zeilen, 10 Spalten und 0 Abstand zwischen Elementen
-		setLayout(new GridLayout(10,10,0,0));
+		setLayout(new GridLayout(x_flaeche,y_flaeche,0,0));
 		
 		//Erstellen des Spielfelds
-		for (int i=0; i<10; i++)
+		for (int i=0; i<y_flaeche; i++)
 		{
-			for(int j=0; j<10; j++)
+			for(int j=0; j<x_flaeche; j++)
 			{
 				felder[j][i] = new JLabel();
 				felder[j][i].setPreferredSize(new Dimension(50,50));
@@ -58,7 +66,6 @@ public class Spielfeld extends JPanel
 				add(felder[j][i]);
 			}
 		}
-		hf.setGame();
 		setPawns();
 	}
 	public void setPawns()
@@ -101,9 +108,9 @@ public class Spielfeld extends JPanel
 	
 	public void deletePawns()
 	{
-		for(int i=0; i<10; i++)
+		for(int i=0; i<y_flaeche; i++)
 		{
-			for(int j=0; j<10; j++)
+			for(int j=0; j<x_flaeche; j++)
 			{
 				felder[i][j].setIcon(null);
 			}

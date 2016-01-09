@@ -3,6 +3,7 @@ import javax.swing.*;
 import de.fhwgt.dionarap.model.data.*;
 import de.fhwgt.dionarap.model.objects.Ammo;
 import de.fhwgt.dionarap.controller.*;
+import de.fhwgt.dionarap.levelreader.LevelReader;
 
 /**
  * Programm:	  DionaRap
@@ -17,37 +18,37 @@ public class Hauptfenster extends JFrame
 {
 	// Diese Variable wird ben�tigt, da JFrame das Interface Serializable implementiert
 	private static final long serialVersionUID = 1L;
+	String pfad = System.getProperty("user.dir")+"/levels/";
 	String thema = "squarehead";
-	int shoot_ammount = 3;
-	int ammo_ammount = 3;
-	JPanel flaeche = new JPanel();
-	DionaRapModel spiel = new DionaRapModel();
-	MTConfiguration conf = new MTConfiguration();
-	DionaRapController steuerung = new DionaRapController(spiel);
-	Spielfeld feld = new Spielfeld(spiel, this);
-	int anz_gegner = spiel.getOpponentCount();
+	JPanel flaeche;
+	DionaRapModel spiel;
+	DionaRapController steuerung;
+	Spielfeld feld;
+	int anz_gegner;
 	Toolbar toolbar;
 	Navigator nav;
 	JMenuBar menue;
 	Settings einstellungen;
 	
+	LevelReader levelReader;
+	LevelReader.Level aktLevel;
+	
 	public Hauptfenster()
 	{
+		//Level Reader starten
+		levelReader = new LevelReader();
 		
-		//Konfiguration für Multi-Threading definieren
-		conf.setAlgorithmAStarActive(true);
-		conf.setAvoidCollisionWithObstacles(true);
-		conf.setAvoidCollisionWithOpponent(false);
-		conf.setMinimumTime(800);				//0,8 Sekunden
-		conf.setShotGetsOwnThread(true);		//nicht unbegrenzte Anzahl Schüsse
-		conf.setOpponentStartWaitTime(3000);	//5 Sekunden am Anfang Schlaf
-		conf.setOpponentWaitTime(2000);			//Gegner warten vor jedem Zug 2 Sekunden
-		conf.setShotWaitTime(500);				//ein Schuss benötigt eine halbe Sekunde	
-		conf.setRandomOpponentWaitTime(false);	//keine zufällige Wartezeit
-		conf.setDynamicOpponentWaitTime(false);	//immer gleichlang warten
+		//Startlevel einlesen
+		aktLevel = levelReader.readLevel(pfad + "level_einfach.xml");
+		
+		flaeche = new JPanel();
+		spiel = aktLevel.getModel();
+		steuerung = new DionaRapController(spiel);
+		feld = new Spielfeld(spiel, this);
+		anz_gegner = spiel.getOpponentCount();
 		
 		//Controller Konfigurationsdatei übergeben
-		steuerung.setMultiThreaded(conf);
+		steuerung.setMultiThreaded(aktLevel.getConfig());
 		
 		//Operation fuer Close-Button
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -84,17 +85,6 @@ public class Hauptfenster extends JFrame
 		requestFocus();
 	}
 	
-	public void setGame()
-	{
-		spiel.setShootAmount(shoot_ammount);
-		
-		for(int i=0; i<ammo_ammount; i++)
-		{
-			Ammo ammo = new Ammo();
-			spiel.addAmmo(ammo);
-		}
-	}
-	
 	public DionaRapController getSteuerung()
 	{
 		return steuerung;
@@ -124,6 +114,11 @@ public class Hauptfenster extends JFrame
 	public String getThema()
 	{
 		return thema;
+	}
+	
+	public MTConfiguration getLevel()
+	{
+		return aktLevel.getConfig();
 	}
 	
 	public void setThema(String thema_neu)

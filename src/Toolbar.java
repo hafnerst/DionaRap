@@ -124,7 +124,7 @@ public class Toolbar extends JToolBar
 		{
 			public void actionPerformed(ActionEvent event)
 			{
-				einstellungen = new Settings(hf, hf.conf);
+				einstellungen = new Settings(hf, hf.getLevel());
 			}
 		});
 		settingsP.add(settingsB, gbs);
