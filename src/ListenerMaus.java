@@ -85,7 +85,11 @@ public class ListenerMaus extends MouseAdapter implements ActionListener
 			}
 			else
 			{
-				controller.shoot();
+				if(controller.shoot() == false)
+				{
+					Toolbar tool = hf.getToolbar();
+					tool.startBlinkThread();
+				}
 			}
 		}
 		}

@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -35,6 +36,10 @@ public class Toolbar extends JToolBar
 	JPanel[] munitionBilder;
 	Settings einstellungen;
 	int mun_menge = 0;
+	TitledBorder mun;
+	
+	Thread blinkThread;
+	MunitionBlink munitionBlink;
 
 	public Toolbar(Hauptfenster haupt)
 	{	
@@ -129,6 +134,10 @@ public class Toolbar extends JToolBar
 		setRollover(true);
 		
 		add(gesamtP);
+		
+		//Der Blink-Thread
+		munitionBlink = new MunitionBlink(this);
+		blinkThread = new Thread(munitionBlink);
 	}
 	
 	public void setMunition()
@@ -156,14 +165,21 @@ public class Toolbar extends JToolBar
         }
 		
 		munitionP.setBorder(BorderFactory.createTitledBorder("Munition"));
-		TitledBorder mun = (TitledBorder) munitionP.getBorder();
+		mun = (TitledBorder) munitionP.getBorder();
 		mun.setTitleFont(new Font(null, Font.PLAIN, 11));
 		munitionP.setToolTipText("Munitionskapazität");
 	}
 	
 	public void deleteMunition()
 	{
-        if (mun_menge > 3) {
+		if(mun_menge == 1)
+		{
+			stopBlinkThread();
+            munitionP.removeAll();
+            munitionP.revalidate();
+            munitionP.repaint();
+		}
+		else if (mun_menge > 3) {
             
             munitionP.remove(munitionL);
             munitionP.remove(munitionBilder[0]);
@@ -174,12 +190,38 @@ public class Toolbar extends JToolBar
         }
         else
         {
-            for (int i = 0; i < mun_menge; i++) {
-                 
+            for (int i = 0; i < mun_menge; i++) 
+            {    
                 munitionP.removeAll();
                 munitionP.revalidate();
                 munitionP.repaint();
             }
         }
+	}
+	/** Stoppt den Munitions-Blink-Thread */
+	void stopBlinkThread() 
+	{
+		if(blinkThread.isAlive() == true) {
+			blinkThread.interrupt();
+		}
+	}
+	
+	/** Startet den Munitions-Blink-Thread */
+	void startBlinkThread() {
+		if(blinkThread.isAlive() == false) {
+			blinkThread = new Thread(munitionBlink);
+			blinkThread.start();
+		}
+	}
+	
+	public void ammoBlink(boolean blinkOn) {
+		if(blinkOn)
+		{
+			munitionP.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.red, 1), "Munition"));
+		}
+		else
+		{
+			munitionP.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 1), "Munition"));
+		}
 	}
 }

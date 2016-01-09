@@ -16,7 +16,11 @@ public class ListenerTasten implements KeyListener
 			int dir = Integer.parseInt(""+eingabe);
 			if(dir==5)
 			{
-				controller.shoot();
+				if(controller.shoot() == false)
+				{
+					Toolbar tool = hf.getToolbar();
+					tool.startBlinkThread();
+				}
 			}
 			else
 			{

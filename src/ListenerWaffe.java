@@ -16,6 +16,10 @@ public class ListenerWaffe implements ActionListener
 		Hauptfenster hf = (Hauptfenster)nav.getParent();
 		DionaRapController controller = hf.getSteuerung();
 		
-		controller.shoot();
+		if(controller.shoot() == false)
+		{
+			Toolbar tool = hf.getToolbar();
+			tool.startBlinkThread();
+		}
 	}
 }
