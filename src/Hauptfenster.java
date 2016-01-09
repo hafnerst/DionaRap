@@ -39,7 +39,7 @@ public class Hauptfenster extends JFrame
 		levelReader = new LevelReader();
 		
 		//Startlevel einlesen
-		aktLevel = levelReader.readLevel(pfad + "level_einfach.xml");
+		aktLevel = levelReader.readLevel(pfad + "level_schwer.xml");
 		
 		flaeche = new JPanel();
 		spiel = aktLevel.getModel();

@@ -29,6 +29,7 @@ public class Spielfeld extends JPanel
 	JLabel[][] felder;	
 	Hauptfenster hf;
 	int x_flaeche, y_flaeche;
+	int obstacleCount;
 	
 	public Spielfeld(DionaRapModel spiel, Hauptfenster fenster)
 	{
@@ -70,6 +71,7 @@ public class Spielfeld extends JPanel
 	}
 	public void setPawns()
 	{
+		obstacleCount = 0;
 		String thema = hf.getThema();
 		AbstractPawn[] figuren = model.getAllPawns();
 		String pfad = System.getProperty("user.dir")+"/images/"+thema;
@@ -86,6 +88,7 @@ public class Spielfeld extends JPanel
 			else if(figuren[i] instanceof Obstacle)
 			{
 				felder[figuren[i].getX()][figuren[i].getY()].setIcon(new ImageIcon(pfad+"/obstacle.gif"));
+				obstacleCount++;
 			}
 			else if(figuren[i] instanceof Player)
 			{
@@ -115,5 +118,10 @@ public class Spielfeld extends JPanel
 				felder[i][j].setIcon(null);
 			}
 		}
+	}
+	
+	public int getObstacleCount()
+	{
+		return obstacleCount;
 	}
 }
