@@ -35,11 +35,6 @@ public class SpielEinstellungen extends JDialog implements ActionListener
 		fenster = f;
 		model = fenster.getModel();
 		feld = fenster.getSpielfeld();
-		grid = model.getGrid();
-		x_flaeche = grid.getGridSizeX();
-		y_flaeche = grid.getGridSizeY();
-		opponentAnz = model.getOpponentCount();
-		obstacleAnz = feld.getObstacleCount();
 		
 		//Markierungen an JSlider
 		Hashtable labelTable = new Hashtable();
@@ -58,7 +53,6 @@ public class SpielEinstellungen extends JDialog implements ActionListener
 		delayStart.setPaintTicks(true);
 		delayStart.setPaintLabels(true);
 		delayStart.setLabelTable(labelTable);
-		delayStart.setValue(levelConf.getOpponentStartWaitTime());
 		
 		this.add(new JLabel("Verzögerung eines Schusses:"));
 		this.add(delayShoot= new JSlider(0,10000));
@@ -67,7 +61,6 @@ public class SpielEinstellungen extends JDialog implements ActionListener
 		delayShoot.setPaintTicks(true);
 		delayShoot.setPaintLabels(true);
 		delayShoot.setLabelTable(labelTable);
-		delayShoot.setValue(levelConf.getShotWaitTime());
 		
 		this.add(new JLabel("Wartezeit eines Gegners vor jedem Schritt:    "));
 		this.add(delayStep= new JSlider(0,10000));
@@ -76,19 +69,18 @@ public class SpielEinstellungen extends JDialog implements ActionListener
 		delayStep.setPaintTicks(true);
 		delayStep.setPaintLabels(true);
 		delayStep.setLabelTable(labelTable);
-		delayStep.setValue(levelConf.getOpponentStartWaitTime());
 		
 		this.add(new JLabel(""));
 		this.add(randomWaitTime= new JCheckBox("Zufällige Wartezeit der Gegner"));
-		randomWaitTime.setSelected(levelConf.isRandomOpponentWaitTime());
+		
 		
 		this.add(new JLabel(""));
 		this.add(opponentsAvoidObstacles= new JCheckBox("Gegner meiden Kollision mit Hindernis"));
-		opponentsAvoidObstacles.setSelected(levelConf.isAvoidCollisionWithObstacles());
+		
 		
 		this.add(new JLabel(""));
 		this.add(opponentsAvoidOpponents= new JCheckBox("Gegner meiden Kollision mit anderen Gegnern"));
-		opponentsAvoidOpponents.setSelected(levelConf.isAvoidCollisionWithOpponent());
+		
 		
 		this.add(new JLabel("Anzahl Zeilen des Spielfeldes:"));
 		this.add(zeilen= new JTextField(Integer.toString(x_flaeche)));
@@ -101,6 +93,8 @@ public class SpielEinstellungen extends JDialog implements ActionListener
 		
 		this.add(new JLabel("Anzahl der Gegner:"));
 		this.add(opponents= new JTextField(Integer.toString(opponentAnz)));
+		
+		readConfig(levelConf);
 		
 		this.add(ubernehmen = new JButton("Übernehmen"));
 		this.add(abbruch = new JButton("Abbruch"));
@@ -116,10 +110,55 @@ public class SpielEinstellungen extends JDialog implements ActionListener
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
-
+	
+	private void readConfig(MTConfiguration levelConf) 
+	{
+		grid = model.getGrid();
+		x_flaeche = grid.getGridSizeX();
+		y_flaeche = grid.getGridSizeY();
+		opponentAnz = model.getOpponentCount();
+		obstacleAnz = feld.getObstacleCount();
+		
+		delayStart.setValue(levelConf.getOpponentStartWaitTime());
+		delayShoot.setValue(levelConf.getShotWaitTime());
+		delayStep.setValue(levelConf.getOpponentStartWaitTime());
+		randomWaitTime.setSelected(levelConf.isRandomOpponentWaitTime());
+		opponentsAvoidObstacles.setSelected(levelConf.isAvoidCollisionWithObstacles());
+		opponentsAvoidOpponents.setSelected(levelConf.isAvoidCollisionWithOpponent());
+		zeilen.setText(Integer.toString(x_flaeche));
+		spalten.setText(Integer.toString(y_flaeche));
+		obstacles.setText(Integer.toString(obstacleAnz));
+		opponents.setText(Integer.toString(opponentAnz));
+	}
+	
+	private void writeConfig()
+	{
+		MTConfigurationComp newConfig = new MTConfigurationComp();
+		
+		newConfig.setOpponentStartWaitTime(delayStart.getValue());
+		newConfig.setShotWaitTime(delayShoot.getValue());
+		newConfig.setOpponentWaitTime(delayStep.getValue());
+		newConfig.setRandomOpponentWaitTime(randomWaitTime.isSelected());
+		newConfig.setAvoidCollisionWithObstacles(opponentsAvoidObstacles.isSelected());
+		newConfig.setAvoidCollisionWithOpponent(opponentsAvoidOpponents.isSelected());
+		newConfig.setZeilen(Integer.parseInt(zeilen.getText()));
+		newConfig.setSpalten(Integer.parseInt(spalten.getText()));
+		newConfig.setObstacleCount(Integer.parseInt(obstacles.getText()));
+		newConfig.setOpponentCount(Integer.parseInt(opponents.getText()));
+		
+		fenster.startNewGame(newConfig);
+	}
+	
 	public void actionPerformed(ActionEvent e) 
 	{
-		
-		
+		if(e.getActionCommand().equals("ubernehmen")) 
+		{
+			writeConfig();
+			this.dispose();
+		}
+		else if (e.getActionCommand().equals("abbruch")) 
+		{
+			this.dispose();
+		}
 	}
 }

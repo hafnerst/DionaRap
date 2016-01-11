@@ -12,7 +12,7 @@ public class ListenerModel implements DionaRapListener
 	String pfad;
 	int eingabe;
 	Hauptfenster hf;
-	Toolbar tool;
+	Toolbar toolbar;
 	
 	public ListenerModel(Spielfeld feld)
 	{
@@ -26,7 +26,7 @@ public class ListenerModel implements DionaRapListener
 		sfeld.setPawns();
 		
 		DionaRapModel model = (DionaRapModel)event.getSource();
-		Toolbar toolbar = hf.getToolbar();
+		toolbar = hf.getToolbar();
 		
 		//Anpassung des Punktestands
 		int stand = model.getScore();		
@@ -39,9 +39,9 @@ public class ListenerModel implements DionaRapListener
 		toolbar.fortschrittPB.setValue(fortschritt);
 		
 		//Anpassung der Munitionsanzeige
-		tool = (Toolbar) hf.getToolbar();
-		tool.deleteMunition();
-		tool.setMunition();
+		
+		toolbar.deleteMunition();
+		toolbar.setMunition();
 	}
 
 	public void statusChanged(GameStatusEvent event) 

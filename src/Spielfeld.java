@@ -28,7 +28,7 @@ public class Spielfeld extends JPanel
 	DionaRapModel model;
 	JLabel[][] felder;	
 	Hauptfenster hf;
-	int x_flaeche, y_flaeche;
+	int x_fl, y_fl;
 	int obstacleCount;
 	
 	public Spielfeld(DionaRapModel spiel, Hauptfenster fenster)
@@ -37,9 +37,16 @@ public class Spielfeld extends JPanel
 		model = spiel;
 		
 		Grid spielflaeche = model.getGrid();
-		x_flaeche = spielflaeche.getGridSizeX();
-		y_flaeche = spielflaeche.getGridSizeY();
+		x_fl = spielflaeche.getGridSizeX();
+		y_fl = spielflaeche.getGridSizeY();
 		
+		setSpielflaeche(x_fl, y_fl);
+
+		setPawns();
+	}
+	
+	public void setSpielflaeche(int x_flaeche, int y_flaeche)
+	{
 		felder = new JLabel[x_flaeche][y_flaeche];
 		//10 Zeilen, 10 Spalten und 0 Abstand zwischen Elementen
 		setLayout(new GridLayout(x_flaeche,y_flaeche,0,0));
@@ -67,8 +74,8 @@ public class Spielfeld extends JPanel
 				add(felder[j][i]);
 			}
 		}
-		setPawns();
 	}
+	
 	public void setPawns()
 	{
 		obstacleCount = 0;
@@ -111,9 +118,9 @@ public class Spielfeld extends JPanel
 	
 	public void deletePawns()
 	{
-		for(int i=0; i<y_flaeche; i++)
+		for(int i=0; i<y_fl; i++)
 		{
-			for(int j=0; j<x_flaeche; j++)
+			for(int j=0; j<x_fl; j++)
 			{
 				felder[i][j].setIcon(null);
 			}

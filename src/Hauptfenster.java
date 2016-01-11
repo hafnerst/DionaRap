@@ -29,7 +29,12 @@ public class Hauptfenster extends JFrame
 	Navigator nav;
 	JMenuBar menue;
 	Settings einstellungen;
+	ListenerModel listenerModel;
+	ListenerFenster listenerFenster;
+	ListenerTasten listenerTasten;
+	ListenerMaus listenerMaus;
 	
+	MTConfigurationComp levelConf;
 	LevelReader levelReader;
 	LevelReader.Level aktLevel;
 	
@@ -39,7 +44,7 @@ public class Hauptfenster extends JFrame
 		levelReader = new LevelReader();
 		
 		//Startlevel einlesen
-		aktLevel = levelReader.readLevel(pfad + "level_schwer.xml");
+		aktLevel = levelReader.readLevel(pfad + "level_einfach.xml");
 		
 		flaeche = new JPanel();
 		spiel = aktLevel.getModel();
@@ -59,7 +64,8 @@ public class Hauptfenster extends JFrame
 		//Spielfeld im Zentrum des Hauptfensters anlegen
 		flaeche.add(feld, BorderLayout.CENTER);	
 		flaeche.add(feld, BorderLayout.CENTER);
-		flaeche.addMouseListener(new ListenerMaus(this));
+		listenerMaus = new ListenerMaus(this);
+		flaeche.addMouseListener(listenerMaus);
 		add(flaeche);
 		
 		toolbar = new Toolbar(this);
@@ -78,11 +84,39 @@ public class Hauptfenster extends JFrame
 		setVisible(true);
 		nav = new Navigator(this);
 		
-		
-		addComponentListener(new ListenerFenster());
-		spiel.addModelChangedEventListener(new ListenerModel(feld));
-		addKeyListener(new ListenerTasten());
+		listenerFenster = new ListenerFenster();
+		addComponentListener(listenerFenster);
+		listenerModel = new ListenerModel(feld);
+		spiel.addModelChangedEventListener(listenerModel);
+		listenerTasten = new ListenerTasten();
+		addKeyListener(listenerTasten);
 		requestFocus();
+	}
+	
+	void startNewGame(MTConfigurationComp newLevel) {
+		
+		//Falls Level manuell angepasst
+		if(newLevel != null) {
+			//Spiellogik
+			spiel.removeModelChangedEventListener(listenerModel);
+			spiel = new DionaRapModel(newLevel.getZeilen(), newLevel.getSpalten(), newLevel.getOpponentCount(), newLevel.getObstacleCount());
+			steuerung = new DionaRapController(spiel);
+			spiel.addModelChangedEventListener(listenerModel = new ListenerModel(feld));
+			spiel = aktLevel.getModel();
+			
+			levelConf = newLevel;			
+			spiel.setActiveConfiguration(newLevel);
+		}
+		
+		//Multithreading
+		steuerung.setMultiThreaded(levelConf);
+		
+		feld.setSpielflaeche(spiel.getGrid().getGridSizeX(), spiel.getGrid().getGridSizeY());
+		anz_gegner = spiel.getOpponentCount();
+		feld.deletePawns();
+		feld.setPawns();
+		this.pack();
+		this.requestFocus();
 	}
 	
 	public DionaRapController getSteuerung()

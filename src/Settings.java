@@ -32,16 +32,16 @@ public class Settings extends JFrame
 	{
 		map = new HashMap();
 		
-		map.put("1", true);
-		map.put("2", true);
-		map.put("3", false);
+		map.put("1", conf.isAlgorithmAStarActive());
+		map.put("2", conf.isAvoidCollisionWithObstacles());
+		map.put("3", conf.isAvoidCollisionWithOpponent());
 		map.put("4", conf.getOpponentMinimumWaitTime());
-		map.put("5", true);
+		map.put("5", conf.isShotGetsOwnThread());
 		map.put("6", conf.getOpponentStartWaitTime());
 		map.put("7", conf.getOpponentWaitTime());
 		map.put("8", conf.getShotWaitTime());
-		map.put("9", false);
-		map.put("10", false);
+		map.put("9", conf.isRandomOpponentWaitTime());
+		map.put("10", conf.isDynamicOpponentWaitTime());
 		
 		Object [] [] zeilenDaten = {
 			{"AlgorithmAStarActive", (boolean)map.get("1")},
