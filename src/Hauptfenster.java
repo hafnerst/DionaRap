@@ -7,10 +7,10 @@ import de.fhwgt.dionarap.levelreader.LevelReader;
 
 /**
  * Programm:	  DionaRap
- * �berschrift:   Erstellung des Hauptfensters
- * Beschreibung:  Zeigt das Erstellen eines Hauptfensters und enth�lt die main Methode 
+ * Ueberschrift:   Erstellung des Hauptfensters
+ * Beschreibung:  Zeigt das Erstellen eines Hauptfensters und enthaelt die main Methode 
  * Organisation:  Hochschule Ravensburg-Weingarten
- * @author Daniel Landler-G�rtner und Steffen Hafner
+ * @author Daniel Landler-Gaertner und Steffen Hafner
  * @version 1.0
  */
 

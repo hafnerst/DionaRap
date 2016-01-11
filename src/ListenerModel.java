@@ -7,6 +7,15 @@ import de.fhwgt.dionarap.model.events.DionaRapChangedEvent;
 import de.fhwgt.dionarap.model.events.GameStatusEvent;
 import de.fhwgt.dionarap.model.listener.*;
 
+/**
+ * Programm:	  DionaRap
+ * Ueberschrift:  Erstellung des Modellisteners
+ * Beschreibung:  Zeigt, wie das Model auf Statusaenderungen reagiert
+ * Organisation:  Hochschule Ravensburg-Weingarten
+ * @author Daniel Landler-Gaertner und Steffen Hafner
+ * @version 1.0
+ */
+
 public class ListenerModel implements DionaRapListener
 {
 	Spielfeld sfeld;

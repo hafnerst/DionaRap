@@ -12,6 +12,15 @@ import javax.swing.JTextField;
 
 import de.fhwgt.dionarap.model.data.MTConfiguration;
 
+/**
+ * Programm:	  DionaRap
+ * Ueberschrift:  Erstellung der Einstellungen
+ * Beschreibung:  Zeigt die Spieleinstellungen in einer Tabelle an
+ * Organisation:  Hochschule Ravensburg-Weingarten
+ * @author Daniel Landler-Gaertner und Steffen Hafner
+ * @version 1.0
+ */
+
 public class Settings extends JFrame
 {
 	Hauptfenster hf;

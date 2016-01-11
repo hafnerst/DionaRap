@@ -18,6 +18,14 @@ import de.fhwgt.dionarap.model.data.DionaRapModel;
 
 import java.awt.event.ActionListener;
 
+/**
+ * Programm:	  DionaRap
+ * Ueberschrift:  Erstellung der Toolbar
+ * Beschreibung:  Die Toolbar gibt aktuelle Ergebnisse/Einstellungen an
+ * Organisation:  Hochschule Ravensburg-Weingarten
+ * @author Daniel Landler-Gaertner und Steffen Hafner
+ * @version 1.0
+ */
 
 public class Toolbar extends JToolBar
 {

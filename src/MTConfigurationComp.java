@@ -1,5 +1,13 @@
 import de.fhwgt.dionarap.model.data.MTConfiguration;
 
+/**
+ * Programm:	  DionaRap
+ * Ueberschrift:  Erstellung des eigenen Configfile
+ * Beschreibung:  Wird benötigt, um die Spieleinstellungen zu speichern
+ * Organisation:  Hochschule Ravensburg-Weingarten
+ * @author Daniel Landler-Gaertner und Steffen Hafner
+ * @version 1.0
+ */
 
 public class MTConfigurationComp extends MTConfiguration 
 {

@@ -14,6 +14,14 @@ import javax.swing.JTextField;
 import de.fhwgt.dionarap.model.data.MTConfiguration;
 import de.fhwgt.dionarap.model.data.*;
 
+/**
+ * Programm:	  DionaRap
+ * Ueberschrift:  Erstellung der Spieleinstellungen
+ * Beschreibung:  Mit Hilfe dieser Klasse kann der Benutzer die Einstellungen manuell bearbeiten
+ * Organisation:  Hochschule Ravensburg-Weingarten
+ * @author Daniel Landler-Gaertner und Steffen Hafner
+ * @version 1.0
+ */
 
 public class SpielEinstellungen extends JDialog implements ActionListener
 {

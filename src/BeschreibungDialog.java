@@ -7,6 +7,15 @@ import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
+/**
+ * Programm:	  DionaRap
+ * Ueberschrift:  Erstellung des Beschreibungsdialogs
+ * Beschreibung:  Zeigt die Spieleerklaerung von DionaRap in einem Fenster an
+ * Organisation:  Hochschule Ravensburg-Weingarten
+ * @author Daniel Landler-Gaertner und Steffen Hafner
+ * @version 1.0
+ */
+
 public class BeschreibungDialog 
 {
 	String pfad = System.getProperty("user.dir")+"/Beschreibung/Spielbeschreibung.html";

@@ -5,6 +5,15 @@ import javax.swing.JButton;
 
 import de.fhwgt.dionarap.controller.DionaRapController;
 
+/**
+ * Programm:	  DionaRap
+ * Ueberschrift:  Erstellung des Waffenlisteners
+ * Beschreibung:  Zeigt, wie die wann und wie geschossen wird
+ * Organisation:  Hochschule Ravensburg-Weingarten
+ * @author Daniel Landler-Gaertner und Steffen Hafner
+ * @version 1.0
+ */
+
 public class ListenerWaffe implements ActionListener 
 {
 

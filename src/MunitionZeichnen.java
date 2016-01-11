@@ -4,6 +4,15 @@ import java.awt.Image;
 
 import javax.swing.JPanel;
 
+/**
+ * Programm:	  DionaRap
+ * Ueberschrift:  Erstellung der Zeichnenklasse der Munition
+ * Beschreibung:  Zeigt, wie die Bilder mit Graphics2D in ein Panel gezeichnet wird
+ * Organisation:  Hochschule Ravensburg-Weingarten
+ * @author Daniel Landler-Gaertner und Steffen Hafner
+ * @version 1.0
+ */
+
 public class MunitionZeichnen extends JPanel 
 {
 	private static final long serialVersionUID = 1L;

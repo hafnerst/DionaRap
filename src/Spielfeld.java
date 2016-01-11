@@ -17,10 +17,14 @@ import de.fhwgt.dionarap.model.objects.Player;
 import de.fhwgt.dionarap.model.objects.Vortex;
 
 /**
- * Die Klasse Spielfeld erzeugt f�r das Hauptfenster ein Spielfeld mit Hilfe eines GridLayouts
- * @author Daniel Landler-G�rtner und Steffen Hafner
- *
+ * Programm:	  DionaRap
+ * Ueberschrift:  Erstellung des Spielfelds
+ * Beschreibung:  Zeigt den Aufbau der Spielflaeche
+ * Organisation:  Hochschule Ravensburg-Weingarten
+ * @author Daniel Landler-Gaertner und Steffen Hafner
+ * @version 1.0
  */
+
 public class Spielfeld extends JPanel
 {
 	// Diese Variable wird ben�tigt, da JPanel das Interface Serializable implementiert

@@ -2,10 +2,14 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- * Die Klasse Tastatur erzeugt die Buttons f�r den Navigator in einem GridLayout
- * @author Daniel Landler-G�rtner und Steffen Hafner
- *
+ * Programm:	  DionaRap
+ * Ueberschrift:  Erstellung der Tastatur
+ * Beschreibung:  Zeigt das Anlegen der Tasten im Kindfenster
+ * Organisation:  Hochschule Ravensburg-Weingarten
+ * @author Daniel Landler-Gaertner und Steffen Hafner
+ * @version 1.0
  */
+
 public class Tastatur extends JPanel
 {
 	// Diese Variable wird ben�tigt, da JPanel das Interface Serializable implementiert

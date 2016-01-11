@@ -3,10 +3,14 @@ import java.awt.Polygon;
 import javax.swing.*; 
 
 /**
- * Die Klasse Navigator erstellt ein Kindfenster vom Hauptfenster und setzt deren Eigenschaften
- * @author Daniel Landler-G�rtner und Steffen Hafner
- *
+ * Programm:	  DionaRap
+ * Ueberschrift:  Erstellung des Navigators
+ * Beschreibung:  Das Kindfenster zum Steuern des Spielers über Tasten
+ * Organisation:  Hochschule Ravensburg-Weingarten
+ * @author Daniel Landler-Gaertner und Steffen Hafner
+ * @version 1.0
  */
+
 public class Navigator extends JWindow
 {
 	// Diese Variable wird ben�tigt, da JWindow das Interface Serializable implementiert

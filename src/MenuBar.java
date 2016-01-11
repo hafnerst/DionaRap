@@ -7,6 +7,14 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Vector;
 
+/**
+ * Programm:	  DionaRap
+ * Ueberschrift:  Erstellung der Menuebar
+ * Beschreibung:  Erzeugt das Menue und die jeweiligen Untermenues
+ * Organisation:  Hochschule Ravensburg-Weingarten
+ * @author Daniel Landler-Gaertner und Steffen Hafner
+ * @version 1.0
+ */
 
 public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 {

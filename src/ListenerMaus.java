@@ -11,6 +11,15 @@ import de.fhwgt.dionarap.controller.DionaRapController;
 import de.fhwgt.dionarap.model.data.DionaRapModel;
 import de.fhwgt.dionarap.model.objects.Player;
 
+/**
+ * Programm:	  DionaRap
+ * Ueberschrift:  Erstellung des Mauslisteners
+ * Beschreibung:  Zeigt, wie die Steuerung des Spielers mit der Maus erfolgt
+ * Organisation:  Hochschule Ravensburg-Weingarten
+ * @author Daniel Landler-Gaertner und Steffen Hafner
+ * @version 1.0
+ */
+
 public class ListenerMaus extends MouseAdapter implements ActionListener
 {
 	Hauptfenster hf;
