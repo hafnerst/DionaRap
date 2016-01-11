@@ -74,6 +74,7 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		menuAuswahlLevel.add(levelMit = new JRadioButtonMenuItem("Mittel"));
 		menuAuswahlLevel.add(levelSchw = new JRadioButtonMenuItem("Schwer"));
 		menuAuswahlLevel.add(levelToed = new JRadioButtonMenuItem("Toedlich"));
+		menuAuswahlLevel.setEnabled(false);
 		levelEinf.setSelected(true);
 		
 		menuKonfig.add(menuAuswahlLevel);
@@ -180,22 +181,28 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		}
 		else if(source == levelEinf)
 		{
-			//hf.startNewGame("level_einfach.xml");
+			hf.startNewGame();
+			new Hauptfenster("level_einfach.xml");
 		}
 		
 		else if(source == levelMit)
 		{
-			//hf.startNewGame("level_mittel.xml");
+			hf.startNewGame();
+			new Hauptfenster("level_mittel.xml");
+			
 		}
 		
 		else if(source == levelSchw)
 		{
-			//hf.startNewGame("level_schwer.xml");
+			hf.startNewGame();
+			new Hauptfenster("level_schwer.xml");
+			
 		}
 		
 		else if(source == levelToed)
 		{
-			//hf.startNewGame("level_toedlich.xml");
+			hf.startNewGame();
+			new Hauptfenster("level_toedlich.xml");
 		}
 	}	
 }

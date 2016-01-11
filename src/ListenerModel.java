@@ -1,4 +1,5 @@
 import javax.swing.ImageIcon;
+import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 
 import de.fhwgt.dionarap.model.data.DionaRapModel;
@@ -48,6 +49,8 @@ public class ListenerModel implements DionaRapListener
 	{
 		DionaRapModel model = (DionaRapModel)event.getSource();
 		String thema = hf.getThema();
+		MenuBar menu = hf.getMenu();
+		menu.menuAuswahlLevel.setEnabled(true);
 		pfad = System.getProperty("user.dir")+"/images/"+thema;
 		
 		

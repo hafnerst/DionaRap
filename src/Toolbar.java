@@ -65,8 +65,7 @@ public class Toolbar extends JToolBar
 				JButton tmp_taste = (JButton) event.getSource();
 				Hauptfenster hf = (Hauptfenster) tmp_taste.getTopLevelAncestor();
 				Navigator nav = (Navigator) hf.getNavigator();
-				hf.dispose();
-				nav.dispose();
+				hf.startNewGame();
 				new Hauptfenster();
 			}
 		});

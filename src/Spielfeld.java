@@ -49,7 +49,7 @@ public class Spielfeld extends JPanel
 	{
 		felder = new JLabel[x_flaeche][y_flaeche];
 		//10 Zeilen, 10 Spalten und 0 Abstand zwischen Elementen
-		setLayout(new GridLayout(x_flaeche,y_flaeche,0,0));
+		setLayout(new GridLayout(y_flaeche,x_flaeche,0,0));
 		
 		//Erstellen des Spielfelds
 		for (int i=0; i<y_flaeche; i++)
@@ -122,7 +122,7 @@ public class Spielfeld extends JPanel
 		{
 			for(int j=0; j<x_fl; j++)
 			{
-				felder[i][j].setIcon(null);
+				felder[j][i].setIcon(null);
 			}
 		}
 	}

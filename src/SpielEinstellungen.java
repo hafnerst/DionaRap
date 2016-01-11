@@ -146,7 +146,8 @@ public class SpielEinstellungen extends JDialog implements ActionListener
 		newConfig.setObstacleCount(Integer.parseInt(obstacles.getText()));
 		newConfig.setOpponentCount(Integer.parseInt(opponents.getText()));
 		
-		fenster.startNewGame(newConfig);
+		fenster.startNewGame();
+		new Hauptfenster(newConfig);
 	}
 	
 	public void actionPerformed(ActionEvent e) 
