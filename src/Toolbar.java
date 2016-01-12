@@ -19,14 +19,10 @@ import de.fhwgt.dionarap.model.data.DionaRapModel;
 import java.awt.event.ActionListener;
 
 /**
- * Programm:	  DionaRap
- * Ueberschrift:  Erstellung der Toolbar
- * Beschreibung:  Die Toolbar gibt aktuelle Ergebnisse/Einstellungen an
- * Organisation:  Hochschule Ravensburg-Weingarten
- * @author Daniel Landler-Gaertner und Steffen Hafner
- * @version 1.0
+ * 
+ * Klasse Toolbar erzeugt eine TToolBar mit seinen Komponenten für das Hauptfenster.
+ *
  */
-
 public class Toolbar extends JToolBar
 {
 	private static final long serialVersionUID = 1L;
@@ -48,6 +44,11 @@ public class Toolbar extends JToolBar
 	
 	Thread blinkThread;
 	MunitionBlink munitionBlink;
+	
+/**
+ * Erzeugt eine Instanz der Klasse Toolbar und setzt deren Eigenschaften.
+ * @param haupt das aktuelle Hauptfenster des Spiels
+ */
 
 	public Toolbar(Hauptfenster haupt)
 	{	
@@ -68,6 +69,11 @@ public class Toolbar extends JToolBar
 		spiel_neuB.setFont(new Font(null, Font.PLAIN, 11));
 		spiel_neuB.addActionListener(new ActionListener()
 		{
+			
+		/**
+		 * Dient zur Auswertung der gedrückten Taste und was daraus resultiert.
+		 */
+			
 			public void actionPerformed(ActionEvent event)
 			{
 				JButton tmp_taste = (JButton) event.getSource();
@@ -147,6 +153,10 @@ public class Toolbar extends JToolBar
 		blinkThread = new Thread(munitionBlink);
 	}
 	
+/**
+ * Setzt die Menge von Munitionsbildern in der Toolbar.
+ */
+	
 	public void setMunition()
 	{
 		mun_menge = spiel.getShootAmount();
@@ -177,6 +187,10 @@ public class Toolbar extends JToolBar
 		munitionP.setToolTipText("Munitionskapazität");
 	}
 	
+/**
+ * Löscht die Munitionsbilder um die Anzeige zu aktualisieren.
+ */
+	
 	public void deleteMunition()
 	{
 		if(mun_menge == 1)
@@ -205,7 +219,11 @@ public class Toolbar extends JToolBar
             }
         }
 	}
-	/** Stoppt den Munitions-Blink-Thread */
+	
+/**
+ * Stoppt das Blinken des MunitionBlink-Threads.
+ */
+
 	void stopBlinkThread() 
 	{
 		if(blinkThread.isAlive() == true) {
@@ -213,13 +231,21 @@ public class Toolbar extends JToolBar
 		}
 	}
 	
-	/** Startet den Munitions-Blink-Thread */
+/**
+ * Startet das Blinken des MunitionBlink-Threads.
+ */
+	
 	void startBlinkThread() {
 		if(blinkThread.isAlive() == false) {
 			blinkThread = new Thread(munitionBlink);
 			blinkThread.start();
 		}
 	}
+	
+/**
+ * Setzt und entfernt den Rahmen um die Munitionsanzeige um das Blinken zu realisieren.
+ * @param blinkOn ein Boolean-Wert, der angibt, ob der Rahmen dargestellt wird oder nicht
+ */
 	
 	public void ammoBlink(boolean blinkOn) {
 		if(blinkOn)

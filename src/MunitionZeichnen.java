@@ -5,12 +5,9 @@ import java.awt.Image;
 import javax.swing.JPanel;
 
 /**
- * Programm:	  DionaRap
- * Ueberschrift:  Erstellung der Zeichnenklasse der Munition
- * Beschreibung:  Zeigt, wie die Bilder mit Graphics2D in ein Panel gezeichnet wird
- * Organisation:  Hochschule Ravensburg-Weingarten
- * @author Daniel Landler-Gaertner und Steffen Hafner
- * @version 1.0
+ * 
+ * Klasse MunitionZeichnen dient zur Erzeugung einer Instanz von MunitionZeichnen.
+ *
  */
 
 public class MunitionZeichnen extends JPanel 
@@ -18,11 +15,20 @@ public class MunitionZeichnen extends JPanel
 	private static final long serialVersionUID = 1L;
 	private Image munitionImage;
 	
+/**
+ * Greift auf die Bilddatei zu und legt eine Image Komponente davon an.
+ * @param hf das aktuelle Hauptfenster des Spiels
+ */
+	
 	public MunitionZeichnen(Hauptfenster hf) 
 	{
 		String pfad = System.getProperty("user.dir")+"/images/"+hf.getThema()+"/ammo.png";
 		munitionImage = this.getToolkit().getImage(pfad).getScaledInstance(24, 24, Image.SCALE_DEFAULT);
 	}
+	
+/**
+ * Zeichnet das ausgewählte Munitionsbild mit Java2D.
+ */
 	
 	public void paint(Graphics g)
 	{

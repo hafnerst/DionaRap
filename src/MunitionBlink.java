@@ -1,29 +1,27 @@
 /**
- * Programm:	  DionaRap
- * Ueberschrift:  Anweisungen des Munition BlinkeThreads
- * Beschreibung:  Zeigt die Anweisungen die beim aufrufen des Threads bearbeitet werden
- * Organisation:  Hochschule Ravensburg-Weingarten
- * @author Daniel Landler-Gaertner und Steffen Hafner
- * @version 1.0
+ * 
+ * Klasse MunitionBlink dient zur Erzeugung des Threads für das Blinken der Munition.
+ *
  */
 
 public class MunitionBlink implements Runnable {
 	
-	/** Die Toolbar, in der die Munitionsanzeige blinken soll */
 	Toolbar toolbar;
-	/** Die Zeit, die zwischen dem Blinken liegt */
 	private static int BLINK_TIME = 300;
+
+/**
+ * Erzeugt eine Instanz der Klasse MunitionBlink.	
+ * @param t die aktuelle Toolbar
+ */
 	
-	/**
-	 * Standartkonstruktor
-	 */
 	public MunitionBlink(Toolbar t) {
 		toolbar = t;
 	}
 
-	/**
-	 * Laesst die Munitionsanzeige in einem eigenen thread blinken
-	 */
+/**
+ * Lässt den Thread laufen.
+ */
+	
 	public void run() {
 		for (int i = 0; i < 3; i++) {
 			
@@ -38,12 +36,14 @@ public class MunitionBlink implements Runnable {
 				Thread.sleep(MunitionBlink.BLINK_TIME);
 			} catch (InterruptedException e) {
 				toolbar.ammoBlink(false);
+				break;
 			}
 			toolbar.ammoBlink(false);
 			try {
 				Thread.sleep(MunitionBlink.BLINK_TIME);
 			} catch (InterruptedException e) {
 				toolbar.ammoBlink(false);
+				break;
 			}
 		}
 	}

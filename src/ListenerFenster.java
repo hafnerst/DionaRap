@@ -2,21 +2,28 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
 /**
- * Programm:	  DionaRap
- * Ueberschrift:  Erstellung des Fensterlisteners
- * Beschreibung:  Zeigt, wie das Kindfenster dem Hauptfenster folgt
- * Organisation:  Hochschule Ravensburg-Weingarten
- * @author Daniel Landler-Gaertner und Steffen Hafner
- * @version 1.0
+ * 
+ * Klasse ListenerFenster dient zur Implementierung eines ComponentListener
+ *
  */
 
 public class ListenerFenster implements ComponentListener
 {
 
+/**
+ * Dient zur Auswertung, ob die ausgewählte Komponente versteckt ist.
+ * 
+ */
+	
 	public void componentHidden(ComponentEvent event) 
 	{
 
 	}
+	
+/**
+ * Dient zur Auswertung, ob die ausgewählte Komponente bewegt wurde.
+ * 
+ */
 
 	public void componentMoved(ComponentEvent event) 
 	{
@@ -25,10 +32,18 @@ public class ListenerFenster implements ComponentListener
 		nav.setLocation(hf.getX()+hf.getWidth()+20, hf.getY());
 	}
 	
+/**
+ * Dient zur Auswertung, ob die ausgewählte Komponente verkleinert/vergrößert wurde.
+ */
+	
 	public void componentResized(ComponentEvent event) 
 	{
 		
 	}
+	
+/**
+ * Dient zur Auswertung, ob die ausgewählte Komponente gezeigt wurde.
+ */
 
 	public void componentShown(ComponentEvent event) 
 	{

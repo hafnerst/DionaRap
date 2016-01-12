@@ -3,17 +3,18 @@ import java.awt.event.KeyListener;
 import de.fhwgt.dionarap.controller.DionaRapController;
 
 /**
- * Programm:	  DionaRap
- * Ueberschrift:  Erstellung des Tastenlisteners
- * Beschreibung:  Zeigt, wie die Steuerung mit dem Nummern-Tasten funktioniert
- * Organisation:  Hochschule Ravensburg-Weingarten
- * @author Daniel Landler-Gaertner und Steffen Hafner
- * @version 1.0
+ * 
+ * Klasse ListenerTasten dient zum implementieren eines KeyListener.
+ *
  */
 
 public class ListenerTasten implements KeyListener 
 {
 
+/**
+ * Dient zur Auswertung, ob und welche Taste gedrückt wurde.
+ */
+	
 	public void keyTyped(KeyEvent event) {
 		
 		Hauptfenster hf = (Hauptfenster)event.getSource();
@@ -37,10 +38,18 @@ public class ListenerTasten implements KeyListener
 			}
 		}
 	}
+	
+/**
+ * Dient zur Auswertung, ob und welche Taste gedrückt gehalten wird.
+ */
 
 	public void keyPressed(KeyEvent event) 
 	{	
 	}
+	
+/**
+ * Dient zur Auswertung, ob und welche Taste losgelassen wird.
+ */
 
 	public void keyReleased(KeyEvent event) 
 	{	

@@ -2,11 +2,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
@@ -15,12 +13,9 @@ import de.fhwgt.dionarap.model.data.MTConfiguration;
 import de.fhwgt.dionarap.model.data.*;
 
 /**
- * Programm:	  DionaRap
- * Ueberschrift:  Erstellung der Spieleinstellungen
- * Beschreibung:  Mit Hilfe dieser Klasse kann der Benutzer die Einstellungen manuell bearbeiten
- * Organisation:  Hochschule Ravensburg-Weingarten
- * @author Daniel Landler-Gaertner und Steffen Hafner
- * @version 1.0
+ * 
+ * Klasse SpielEinstellungen dient zur Darstellung und Änderung der in der Config hinterlegten Einstellungen.
+ *
  */
 
 public class SpielEinstellungen extends JDialog implements ActionListener
@@ -36,6 +31,12 @@ public class SpielEinstellungen extends JDialog implements ActionListener
 	private JCheckBox randomWaitTime, opponentsAvoidObstacles, opponentsAvoidOpponents;
 	private JButton ubernehmen, abbruch;
 	private JSlider delayStart, delayShoot, delayStep;
+	
+/**
+ * Erzeugt eine Instanz der Klasse SpielEinstellungen.
+ * @param f das aktuelle Hauptfenster des Spiels
+ * @param levelConf die ausgewählte Config
+ */
 	
 	public SpielEinstellungen(Hauptfenster f, MTConfiguration levelConf)
 	{
@@ -119,6 +120,11 @@ public class SpielEinstellungen extends JDialog implements ActionListener
 		this.setVisible(true);
 	}
 	
+/**
+ * Liest die aktuelle angegebene MTConfiguration aus.
+ * @param levelConf die ausgewählte MTConfiguration
+ */
+	
 	private void readConfig(MTConfiguration levelConf) 
 	{
 		grid = model.getGrid();
@@ -139,6 +145,10 @@ public class SpielEinstellungen extends JDialog implements ActionListener
 		opponents.setText(Integer.toString(opponentAnz));
 	}
 	
+/**
+ * Beschreibt die neue MTConfiguration.
+ */
+	
 	private void writeConfig()
 	{
 		MTConfigurationComp newConfig = new MTConfigurationComp();
@@ -157,6 +167,10 @@ public class SpielEinstellungen extends JDialog implements ActionListener
 		fenster.startNewGame();
 		new Hauptfenster(newConfig);
 	}
+	
+/**
+ * Dient zur Auswertung welcher Button gewählt wurde und was daraus resultiert.
+ */
 	
 	public void actionPerformed(ActionEvent e) 
 	{

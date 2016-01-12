@@ -8,12 +8,9 @@ import java.awt.event.ItemListener;
 import java.util.Vector;
 
 /**
- * Programm:	  DionaRap
- * Ueberschrift:  Erstellung der Menuebar
- * Beschreibung:  Erzeugt das Menue und die jeweiligen Untermenues
- * Organisation:  Hochschule Ravensburg-Weingarten
- * @author Daniel Landler-Gaertner und Steffen Hafner
- * @version 1.0
+ * 
+ * Klasse MenuBar dient zur Erzeugung einer Menübar mit ihren Komponenten.
+ *
  */
 
 public class MenuBar extends JMenuBar implements ActionListener, ItemListener
@@ -26,6 +23,11 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 	Vector<JRadioButtonMenuItem> lookAndFeelMenuItem;
 	LookAndFeelInfo[] lfList;
 	int indexLetzterLaF;
+	
+/**
+ * Erzeugt eine Instanz der Klasse MenuBar.
+ * @param fenster das Hauptfenster des Spiels
+ */
 	
 	MenuBar(Hauptfenster fenster)
 	{
@@ -109,6 +111,10 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 		levelToed.addItemListener(this);
 	}
 	
+/**
+ * Dient zur Auswertung, welche Komponente in MenuBar gedrückt wurde und was daraus resultieren soll.
+ */
+	
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getActionCommand().equals("Spielbeschreibung"))
@@ -143,6 +149,10 @@ public class MenuBar extends JMenuBar implements ActionListener, ItemListener
 			}
 		}
 	}
+	
+/**
+ * Dient zur Auswertung, ob und welches Item in der MenuBar sich verändert hat und was daraus resultieren soll.
+ */
 
 	public void itemStateChanged(ItemEvent e) {
 		Object source = e.getItemSelectable();

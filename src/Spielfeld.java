@@ -17,12 +17,9 @@ import de.fhwgt.dionarap.model.objects.Player;
 import de.fhwgt.dionarap.model.objects.Vortex;
 
 /**
- * Programm:	  DionaRap
- * Ueberschrift:  Erstellung des Spielfelds
- * Beschreibung:  Zeigt den Aufbau der Spielflaeche
- * Organisation:  Hochschule Ravensburg-Weingarten
- * @author Daniel Landler-Gaertner und Steffen Hafner
- * @version 1.0
+ * 
+ * Klasse Spielfeld dient zur Erzeugung eines Spielfelds mit seinen Komponenten.
+ *
  */
 
 public class Spielfeld extends JPanel
@@ -34,6 +31,12 @@ public class Spielfeld extends JPanel
 	Hauptfenster hf;
 	int x_fl, y_fl;
 	int obstacleCount;
+	
+/**
+ * Erzeugt eine Instanz der Klasse Spielfeld und setzt dessen Eigenschaften.
+ * @param spiel das aktuelle DionaRapModel des Spiels
+ * @param fenster das aktuelle Hauptfenster des Spiels
+ */
 	
 	public Spielfeld(DionaRapModel spiel, Hauptfenster fenster)
 	{
@@ -48,6 +51,12 @@ public class Spielfeld extends JPanel
 
 		setPawns();
 	}
+	
+/**
+ * Setzt die Spielfläche abhänig von den angegebenen Parameter.
+ * @param x_flaeche die angegebene X-Größe
+ * @param y_flaeche die angegebene Y-Größe
+ */
 	
 	public void setSpielflaeche(int x_flaeche, int y_flaeche)
 	{
@@ -79,6 +88,10 @@ public class Spielfeld extends JPanel
 			}
 		}
 	}
+	
+/**
+ * Setzt die Spielfiguren die im DionaRapModel hinterlegt sind auf die Spielfläche.
+ */
 	
 	public void setPawns()
 	{
@@ -120,6 +133,10 @@ public class Spielfeld extends JPanel
 		}
 	}
 	
+/**
+ * Löscht die Spielfiguren von der Spielfläche.
+ */
+	
 	public void deletePawns()
 	{
 		for(int i=0; i<y_fl; i++)
@@ -130,6 +147,11 @@ public class Spielfeld extends JPanel
 			}
 		}
 	}
+	
+/**
+ * Dient als getMethode um auf obstacleCount (Hindernissmenge) zugreifen zu können.
+ * @return obstacleCount gibt die Anzahl der Hindernisse zurück
+ */
 	
 	public int getObstacleCount()
 	{

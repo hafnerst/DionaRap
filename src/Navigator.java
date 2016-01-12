@@ -3,12 +3,9 @@ import java.awt.Polygon;
 import javax.swing.*; 
 
 /**
- * Programm:	  DionaRap
- * Ueberschrift:  Erstellung des Navigators
- * Beschreibung:  Das Kindfenster zum Steuern des Spielers über Tasten
- * Organisation:  Hochschule Ravensburg-Weingarten
- * @author Daniel Landler-Gaertner und Steffen Hafner
- * @version 1.0
+ * 
+ * Klasse Navigator dient zur Erzeugung eines Navigators mit seinen Komponenten.
+ *
  */
 
 public class Navigator extends JWindow
@@ -17,6 +14,11 @@ public class Navigator extends JWindow
 	private static final long serialVersionUID = 1L;
 	Polygon polygon = new Polygon();
 	int b_size = 75;
+	
+/**
+ * Erzeugt eine Instanz der Klasse Navigator.
+ * @param hauptfenster das aktuelle Hauptfenster des Spiels
+ */
 	
 	public Navigator(JFrame hauptfenster)
 	{
@@ -35,6 +37,12 @@ public class Navigator extends JWindow
 		createPolygon(b_size);
 		setShape(polygon);
 	}
+	
+/**
+ * Erstellt ein Polygon.
+ * @param b_size die ausgewählte Buttongröße der Navigator-Tasten
+ */
+	
 	private void createPolygon(int b_size)
 	{
 		polygon.addPoint(0,b_size);

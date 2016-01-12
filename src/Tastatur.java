@@ -2,12 +2,9 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- * Programm:	  DionaRap
- * Ueberschrift:  Erstellung der Tastatur
- * Beschreibung:  Zeigt das Anlegen der Tasten im Kindfenster
- * Organisation:  Hochschule Ravensburg-Weingarten
- * @author Daniel Landler-Gaertner und Steffen Hafner
- * @version 1.0
+ * 
+ * Klasse Tastatur erzeugt die Tasten des Navigators.
+ *
  */
 
 public class Tastatur extends JPanel
@@ -15,6 +12,10 @@ public class Tastatur extends JPanel
 	// Diese Variable wird ben�tigt, da JPanel das Interface Serializable implementiert
 	private static final long serialVersionUID = 1L;
 	private JButton[] tasten = new JButton[9];
+	
+/**
+ * Erzeugt eine Instanz der Klasse Tastatur.
+ */
 	
 	public Tastatur()
 	{

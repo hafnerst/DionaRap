@@ -6,16 +6,17 @@ import javax.swing.JButton;
 import de.fhwgt.dionarap.controller.DionaRapController;
 
 /**
- * Programm:	  DionaRap
- * Ueberschrift:  Erstellung des Waffenlisteners
- * Beschreibung:  Zeigt, wie die wann und wie geschossen wird
- * Organisation:  Hochschule Ravensburg-Weingarten
- * @author Daniel Landler-Gaertner und Steffen Hafner
- * @version 1.0
+ * 
+ * Klasse ListenerWaffe dient zum imlementieren eines ActionListener.
+ *
  */
 
 public class ListenerWaffe implements ActionListener 
 {
+	
+/**
+ * Dient zur Auswertung, ob die ausgewählte Komponente gedrückt wurde.
+ */
 
 	public void actionPerformed(ActionEvent event) 
 	{

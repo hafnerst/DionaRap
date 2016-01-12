@@ -1,19 +1,14 @@
 import javax.swing.ImageIcon;
-import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
-
 import de.fhwgt.dionarap.model.data.DionaRapModel;
 import de.fhwgt.dionarap.model.events.DionaRapChangedEvent;
 import de.fhwgt.dionarap.model.events.GameStatusEvent;
 import de.fhwgt.dionarap.model.listener.*;
 
 /**
- * Programm:	  DionaRap
- * Ueberschrift:  Erstellung des Modellisteners
- * Beschreibung:  Zeigt, wie das Model auf Statusaenderungen reagiert
- * Organisation:  Hochschule Ravensburg-Weingarten
- * @author Daniel Landler-Gaertner und Steffen Hafner
- * @version 1.0
+ * 
+ * Klasse ListenerModel dient zum implementieren eines DionaRapListener.
+ *
  */
 
 public class ListenerModel implements DionaRapListener
@@ -24,11 +19,20 @@ public class ListenerModel implements DionaRapListener
 	Hauptfenster hf;
 	Toolbar toolbar;
 	
+/**
+ * Erzeugt eine Instanz der Klasse ListenerModel.
+ * @param feld das aktuelle Spielfeld
+ */
+	
 	public ListenerModel(Spielfeld feld)
 	{
 		sfeld = feld;
 		hf = (Hauptfenster) sfeld.getTopLevelAncestor();
 	}
+	
+/**
+ * Dient zur Auswertung, ob sich das Model geändert hat.
+ */
 
 	public void modelChanged(DionaRapChangedEvent event) 
 	{
@@ -53,6 +57,10 @@ public class ListenerModel implements DionaRapListener
 		toolbar.deleteMunition();
 		toolbar.setMunition();
 	}
+	
+/**
+ * Dient zur Auswertung, ob sich der Status des Spiels geändert hat z.B. verloren, gewonnen.
+ */
 
 	public void statusChanged(GameStatusEvent event) 
 	{

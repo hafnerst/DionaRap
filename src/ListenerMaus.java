@@ -12,12 +12,9 @@ import de.fhwgt.dionarap.model.data.DionaRapModel;
 import de.fhwgt.dionarap.model.objects.Player;
 
 /**
- * Programm:	  DionaRap
- * Ueberschrift:  Erstellung des Mauslisteners
- * Beschreibung:  Zeigt, wie die Steuerung des Spielers mit der Maus erfolgt
- * Organisation:  Hochschule Ravensburg-Weingarten
- * @author Daniel Landler-Gaertner und Steffen Hafner
- * @version 1.0
+ * 
+ * Klasse ListenerMaus dient zur Implementierung eines MouseAdapter für einen ActionListener.
+ *
  */
 
 public class ListenerMaus extends MouseAdapter implements ActionListener
@@ -32,6 +29,10 @@ public class ListenerMaus extends MouseAdapter implements ActionListener
 	JMenu menu;
 	JMenuItem alien, dracula, helsing, luke, spacewars, squarehead, vader;
 	
+/**
+ * Erzeugt eine Instanz der Klasse ListenerMaus.
+ * @param fenster das Hauptfenster des Spiels
+ */
 	
 	ListenerMaus(Hauptfenster fenster)
 	{
@@ -76,6 +77,10 @@ public class ListenerMaus extends MouseAdapter implements ActionListener
 		popup.add(menu);
 	}
 	
+/**
+ * Dient zur Auswertung, wenn eine Maustaste gedrückt wurde.
+ */
+	
 	public void mousePressed(MouseEvent e) 
 	{
 		if(e.getButton()==MouseEvent.BUTTON1)
@@ -107,6 +112,11 @@ public class ListenerMaus extends MouseAdapter implements ActionListener
 			popup.show(e.getComponent(),e.getX(), e.getY());
 		}
 	}
+	
+/**
+ * Berechnet zu einem Mausklick, wo er auf dem Spielfeld erfolgt war und in welche Richtung die Spielfigur sich zu bewegen hat.
+ * @return die Bewegungsrichtung als Int Zahl
+ */
 	
 	private int klick_richtung()
 	{
@@ -151,6 +161,10 @@ public class ListenerMaus extends MouseAdapter implements ActionListener
 		}
 	return 0;
 	}
+	
+/**
+ * Setzt den Haken für das neu ausgewählte Thema in der Toolbar
+ */
 
 	public void actionPerformed(ActionEvent e) 
 	{

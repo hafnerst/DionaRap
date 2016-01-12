@@ -1,7 +1,6 @@
 import java.awt.*;
 import javax.swing.*; 
 import de.fhwgt.dionarap.model.data.*;
-import de.fhwgt.dionarap.model.objects.Ammo;
 import de.fhwgt.dionarap.controller.*;
 import de.fhwgt.dionarap.levelreader.LevelReader;
 
@@ -12,6 +11,10 @@ import de.fhwgt.dionarap.levelreader.LevelReader;
  * Organisation:  Hochschule Ravensburg-Weingarten
  * @author Daniel Landler-Gaertner und Steffen Hafner
  * @version 1.0
+ */
+
+/**
+ * Hauptfenster ist verantwortlich für die Implementierung des gesammten Spiels mit seinen Komponenten.
  */
 
 public class Hauptfenster extends JFrame
@@ -40,6 +43,10 @@ public class Hauptfenster extends JFrame
 	LevelReader levelReader;
 	LevelReader.Level aktLevel;
 	
+/**
+ * Erzeugt eine Instanz der Klasse Hauptfenster und implementiert den LevelReader, Spielfläche, Spiel, Steuerung und das Spielfeld. 	
+ */
+	
 	public Hauptfenster()
 	{
 		//Level Reader starten
@@ -59,6 +66,11 @@ public class Hauptfenster extends JFrame
 		
 		erstelleHauptfenster();
 	}
+	
+/**
+ * Erzeugt eine Instanz der Klasse Hauptfenster, wenn zum starten ein individuelles Level gewählt wurde.	
+ * @param level das Level, das für das neue Spiel gewählt wurde
+ */
 	
 	public Hauptfenster(String level)
 	{
@@ -80,6 +92,11 @@ public class Hauptfenster extends JFrame
 		erstelleHauptfenster();
 	}
 	
+/**
+ * Erzeugt eine Instanz der Klasse Hauptfenster, wenn die Spieleinstellungen manuell angepasst wurden.	
+ * @param newLevel die neue modifizierte MTConifgurationComp Datei
+ */
+	
 	public Hauptfenster(MTConfigurationComp newLevel)
 	{		
 		flaeche = new JPanel();
@@ -95,7 +112,11 @@ public class Hauptfenster extends JFrame
 		erstelleHauptfenster();
 	}
 	
-	void erstelleHauptfenster() 
+/**
+ * Erstellt die restlichen Komponenten für das Spiel, die bei den Hauptfenster() noch nicht erzeugt wurden.
+ */
+	
+	private void erstelleHauptfenster() 
 	{
 		
 		//Operation fuer Close-Button
@@ -136,47 +157,90 @@ public class Hauptfenster extends JFrame
 		requestFocus();
 	}
 	
+/**
+ * Startet ein neues Spiel, indem sie den vorhanden Navigator und das Hauptfenster schließt.
+ */
+	
 	public void startNewGame()
 	{
 		nav.dispose();
 		this.dispose();
 	}
 	
+/**
+ * Dient als getMethode um auf die Steuerung zugreifen zu können.
+ * @return steuerung der aktuelle DionaRapController
+ */
+	
 	public DionaRapController getSteuerung()
 	{
 		return steuerung;
 	}
+	
+/**
+ * Dient als getMehtode um auf den Navigator zugreifen zu können.
+ * @return nav der aktuelle Navigator
+ */
 	
 	public Navigator getNavigator()
 	{
 		return nav;
 	}
 	
+/**
+ * Dient als getMethode um auf die Toolbar zugreifen zu können.
+ * @return toolbar die aktuelle Toolbar
+ */
+	
 	public Toolbar getToolbar()
 	{
 		return toolbar;
 	}
+	
+/**
+ * Dient als getMethode um auf die MenuBar zugreifen zu können.
+ * @return menue die aktuelle MenuBar
+ */
 	
 	public MenuBar getMenu()
 	{
 		return menue;
 	}
 	
+/**
+ * Dient als getMethode um auf das DionaRapModel zugreifen zu können.
+ * @return spiel das aktuelle DionaRapModel
+ */
+	
 	public DionaRapModel getModel()
 	{
 		return spiel;
 	}
 	
+/**
+ * Dient als getMethode um auf das Spielfeld zugreifen zu können.
+ * @return feld das aktuelle Spielfeld
+ */
 
 	public Spielfeld getSpielfeld()
 	{
 		return feld;
 	}
 	
+/**
+ * Dient als getMethode um auf das Thema zugreifen zu können.
+ * @return thema das gewählte Thema für das Spiel
+ */
+	
 	public String getThema()
 	{
 		return thema;
 	}
+	
+/**
+ * Dient als getMethode um auf das aktuell gewählte Level zugreifen zu können.
+ * @return aktLevel.getConfig() oder tmpComp die Config des aktuellen Levels oder die MTConfigurationComp 
+ */
 	
 	public MTConfiguration getLevel()
 	{
@@ -190,10 +254,20 @@ public class Hauptfenster extends JFrame
 		}
 	}
 	
+/**
+ * Dient zum ändern des Themas.
+ * @param thema_neu das neu gewählte Thema als String
+ */
+	
 	public void setThema(String thema_neu)
 	{
 		thema = thema_neu;
 	}
+	
+/**
+ * Dient zum (un)sichtbar machen des Navigators.
+ * @param sichtbar ein Boolean-Wert, der angibt, ob sichtbar oder nicht
+ */
 	
 	public void anzNavigator(boolean sichtbar)
 	{
@@ -201,12 +275,22 @@ public class Hauptfenster extends JFrame
 		pack();
 	}
 	
+/**
+ * Dient zum (un)sichtbar machen der Toolbar.
+ * @param sichtbar ein Boolean-Wert, der angibt, ob sichtbar oder nicht
+ */
+	
 	public void anzToolbar(boolean sichtbar)
 	{
 		toolbar.setVisible(sichtbar);
 		pack();
 		setLocationRelativeTo(null);
 	}
+	
+/**
+ * Dient zur Änderung der Ausrichtung der Toolbar.
+ * @param richtung ein Boolean-Wert, der bei true die Toolbar auf North setzt und bei false auf South setzt
+ */
 	
 	public void posToolbar(boolean richtung)
 	{
@@ -220,6 +304,11 @@ public class Hauptfenster extends JFrame
 		}
 		pack();
 	}
+	
+/**
+ * Die main-Funktion, die das Programm startet
+ * @param args ein Standard Attribut
+ */
 		
 	public static void main(String[] args) 
 	{

@@ -8,17 +8,18 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
 /**
- * Programm:	  DionaRap
- * Ueberschrift:  Erstellung des Beschreibungsdialogs
- * Beschreibung:  Zeigt die Spieleerklaerung von DionaRap in einem Fenster an
- * Organisation:  Hochschule Ravensburg-Weingarten
- * @author Daniel Landler-Gaertner und Steffen Hafner
- * @version 1.0
+ * Klasse BeschreibungDialog dient zur Erzeugung der Spielebeschreibung.
+ *
  */
-
 public class BeschreibungDialog 
 {
 	String pfad = System.getProperty("user.dir")+"/Beschreibung/Spielbeschreibung.html";
+	
+/**
+ * Erzeugt eine Instanz der Klasse BeschreibungDialog und zeigt ein JDialog mit Inhalt der DionaRap Spielbeschreibung an.
+ * 
+ * @param hf das Hauptfenster
+ */
 	
 	BeschreibungDialog(Hauptfenster hf)
 	{

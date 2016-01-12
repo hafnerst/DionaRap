@@ -1,24 +1,12 @@
-import java.awt.Dimension;
 import java.util.*;
-import java.awt.GridLayout;
-
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.JTextField;
-
 import de.fhwgt.dionarap.model.data.MTConfiguration;
 
 /**
- * Programm:	  DionaRap
- * Ueberschrift:  Erstellung der Einstellungen
- * Beschreibung:  Zeigt die Spieleinstellungen in einer Tabelle an
- * Organisation:  Hochschule Ravensburg-Weingarten
- * @author Daniel Landler-Gaertner und Steffen Hafner
- * @version 1.0
+ * 
+ * Klasse Settings dient zur Darstellung der Spieleinstellungen in einer Tabelle.
+ *
  */
 
 public class Settings extends JFrame
@@ -28,6 +16,13 @@ public class Settings extends JFrame
 	HashMap map;
 	JTable tabelle;
 	private static final long serialVersionUID = 1L;
+	
+/**
+ * Erzeugt eine Instanz der Klasse Settings und stellt ein Fenster dar.
+ * @param fenster das aktuelle Hauptfenster des Spiels
+ * @param config die aktuelle ausgewählte Conifg
+ */
+	
 	public Settings(Hauptfenster fenster, MTConfiguration config)
 	{
 		hf = fenster;
@@ -37,6 +32,11 @@ public class Settings extends JFrame
 		
 		tabelleSetzen();
 	}
+	
+/**
+ * Setzt die Werte der Tabelle mithilfe einer HashMap.
+ */
+	
 	public void tabelleSetzen()
 	{
 		map = new HashMap();
